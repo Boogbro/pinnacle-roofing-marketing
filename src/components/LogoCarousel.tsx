@@ -37,7 +37,7 @@ const LogoCarousel = () => {
       id: 6,
       name: "Business Insider",
       url: "https://toplimbmedia.com",
-      imgSrc: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/68c78eb6f994d9c867869f73.png",
+      imgSrc: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/68c78eb634fadbeff3515a48.webp",
     },
     {
       id: 7,
