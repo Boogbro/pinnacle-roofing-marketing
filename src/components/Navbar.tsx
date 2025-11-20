@@ -69,7 +69,13 @@ const Navbar = () => {
           : "glass border-b border-transparent"
       )}
     >
-      <div className="container mx-auto h-20 flex items-center justify-between px-6">
+      {/* Dynamic height class applied here */}
+      <div 
+        className={cn(
+          "container mx-auto flex items-center justify-between px-6 transition-all duration-300",
+          isScrolled ? "h-20" : "h-16" // Shorter on load, taller on scroll
+        )}
+      >
         {/* Logo/Title */}
         <a href="#hero" className="flex items-center space-x-2 group" onClick={() => window.scrollTo(0, 0)}>
           <h1 className="text-xl md:text-2xl font-black">
