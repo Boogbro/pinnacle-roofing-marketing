@@ -43,7 +43,7 @@ const GrowthInfrastructure = () => {
   useEffect(() => {
     const observers = cardRefs.current.map((card, index) => {
       if (!card) return null;
-      
+
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -54,7 +54,7 @@ const GrowthInfrastructure = () => {
                 }
                 return prev;
               });
-              
+
               // Animate line height based on visible cards
               const maxVisibleIndex = Math.max(...visibleCards, index);
               const percentage = ((maxVisibleIndex + 1) / features.length) * 100;
@@ -62,7 +62,7 @@ const GrowthInfrastructure = () => {
             }
           });
         },
-        { threshold: 0.3, rootMargin: "-100px" }
+        { threshold: 0.3, rootMargin: "-100px" },
       );
 
       observer.observe(card);
@@ -75,16 +75,14 @@ const GrowthInfrastructure = () => {
   }, [visibleCards]);
 
   return (
-    <section ref={sectionRef} id="infrastructure" className="py-32 px-6 relative overflow-hidden">
+    <section ref={sectionRef} id="infrastructure" className="py-24 px-6 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]"></div>
-      
+
       <div className="container max-w-4xl mx-auto relative">
         {/* Section Header */}
         <div className="text-center mb-24 space-y-4">
-          <h2 className="text-4xl md:text-6xl font-bold">
-            Complete Growth Infrastructure
-          </h2>
+          <h2 className="text-4xl md:text-6xl font-bold">Complete Growth Infrastructure</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Everything you need to dominate your market, fully managed
           </p>
@@ -93,7 +91,7 @@ const GrowthInfrastructure = () => {
         {/* Vertical Timeline Line */}
         <div className="absolute left-8 md:left-1/2 top-[280px] bottom-20 w-[2px] bg-border/30 -translate-x-1/2">
           {/* Animated progress line */}
-          <div 
+          <div
             className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary via-primary to-primary/50 transition-all duration-1000 ease-out"
             style={{ height: `${lineHeight}%` }}
           >
@@ -108,19 +106,19 @@ const GrowthInfrastructure = () => {
             const Icon = feature.icon;
             const isVisible = visibleCards.includes(index);
             const isEven = index % 2 === 0;
-            
+
             return (
               <div
                 key={index}
                 ref={(el) => (cardRefs.current[index] = el)}
-                className={`relative flex items-center ${
-                  isEven ? "md:justify-start" : "md:justify-end"
-                }`}
+                className={`relative flex items-center ${isEven ? "md:justify-start" : "md:justify-end"}`}
               >
                 {/* Timeline node */}
-                <div className={`absolute left-8 md:left-1/2 -translate-x-1/2 z-10 transition-all duration-500 ${
-                  isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
-                }`}>
+                <div
+                  className={`absolute left-8 md:left-1/2 -translate-x-1/2 z-10 transition-all duration-500 ${
+                    isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                  }`}
+                >
                   <div className="w-16 h-16 rounded-full bg-background border-2 border-primary flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.5)]">
                     <Icon className="w-7 h-7 text-primary" />
                   </div>
@@ -131,20 +129,16 @@ const GrowthInfrastructure = () => {
                   className={`glass rounded-2xl p-8 space-y-4 group hover:border-primary/50 transition-all duration-700 hover:scale-[1.02] ml-24 md:ml-0 ${
                     isEven ? "md:mr-[calc(50%+4rem)]" : "md:ml-[calc(50%+4rem)]"
                   } ${
-                    isVisible 
-                      ? "opacity-100 translate-x-0 translate-y-0" 
+                    isVisible
+                      ? "opacity-100 translate-x-0 translate-y-0"
                       : `opacity-0 ${isEven ? "-translate-x-20" : "translate-x-20"} translate-y-10`
                   } max-w-md`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
                   {/* Content */}
                   <div className="space-y-3">
-                    <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">
-                      {feature.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {feature.description}
-                    </p>
+                    <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">{feature.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
                   </div>
 
                   {/* Hover glow effect */}
