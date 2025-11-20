@@ -56,7 +56,7 @@ const Footer = ({ onBookClick }: FooterProps) => {
             <ul className="space-y-2">
               <li>
                 <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Blog (Coming Soon)
+                  Blog
                 </a>
               </li>
               <li>
