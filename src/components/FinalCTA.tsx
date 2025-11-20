@@ -27,7 +27,6 @@ const FinalCTA = () => {
             <Button
               size="lg"
               className="text-lg px-10 py-7 bg-primary hover:bg-primary/90 text-primary-foreground glow hover:scale-105 transition-all duration-300 group"
-              onClick={onBookClick}
             >
               Get Your Free Growth Blueprint
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
