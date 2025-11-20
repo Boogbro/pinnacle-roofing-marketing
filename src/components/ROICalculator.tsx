@@ -60,6 +60,26 @@ const ROICalculator = () => {
     return `$${value.toLocaleString()}`;
   };
 
+  // Custom Power Curve Scaling
+  // Constraints: 0% = 500, 50% = 10,000, 100% = 50,000
+  // Exponent calculated via: Math.log((10000 - 500) / (50000 - 500)) / Math.log(0.5) ≈ 2.38
+  const minJobValue = 500;
+  const maxJobValue = 50000;
+  const curveExponent = 2.38;
+
+  const toSliderValue = (value: number) => {
+    // Inverse of the power function
+    // returns 0 to 100
+    return Math.pow((value - minJobValue) / (maxJobValue - minJobValue), 1 / curveExponent) * 100;
+  };
+
+  const fromSliderValue = (value: number) => {
+    // Power function: Min + (Range) * (percent)^exponent
+    const val = minJobValue + (maxJobValue - minJobValue) * Math.pow(value / 100, curveExponent);
+    // Round to nearest 100 for cleaner numbers
+    return Math.round(val / 100) * 100;
+  };
+
   return (
     <section id="roi-calculator" className="py-24 px-6 relative overflow-hidden">
       {/* Background glow */}
@@ -83,11 +103,11 @@ const ROICalculator = () => {
                 <span className="text-2xl font-bold text-primary">{formatJobValue(avgJobValue)}</span>
               </div>
               <Slider
-                value={[avgJobValue]}
-                onValueChange={(value) => setAvgJobValue(value[0])}
-                min={500} // MODIFIED: Changed min from 1000 to 500
-                max={50000} // Max value is 50,000
-                step={500}
+                value={[toSliderValue(avgJobValue)]}
+                onValueChange={(value) => setAvgJobValue(fromSliderValue(value[0]))}
+                min={0}
+                max={100}
+                step={1}
                 className="cursor-pointer"
               />
             </div>
@@ -159,13 +179,6 @@ const ROICalculator = () => {
               <div className="text-2xl font-bold uppercase tracking-wider">Net Monthly Profit</div>
               <div className="text-2xl font-bold gradient-text animate-count-up">${profit.toLocaleString()}</div>
             </div>
-
-            {/* Hidden ROI block (kept in comments if needed later, but not in screenshot)
-            <div className="text-center space-y-2 p-6 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 glow">
-              <div className="text-sm text-primary-foreground/80 uppercase tracking-wider font-semibold">ROI</div>
-              <div className="text-4xl font-bold gradient-text animate-count-up">{displayedROI}%</div>
-            </div> 
-            */}
           </div>
         </div>
       </div>
