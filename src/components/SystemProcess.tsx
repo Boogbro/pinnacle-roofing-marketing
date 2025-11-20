@@ -56,7 +56,7 @@ const SystemProcess = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 px-6 relative overflow-hidden">
+    <section ref={sectionRef} id="system-process" className="py-32 px-6 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-secondary/20 via-background to-background"></div>
       
