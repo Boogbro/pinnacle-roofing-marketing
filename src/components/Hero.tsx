@@ -27,7 +27,7 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
             (e.g., a link from Cloudinary, AWS S3, or your AI tool)
           */}
           <source
-            src="https://assets.mixkit.co/videos/preview/mixkit-man-working-on-a-roof-of-a-house-12671-large.mp4"
+            src="https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691eddf9330ab522c0d78d91.mp4"
             type="video/mp4"
           />
         </video>
