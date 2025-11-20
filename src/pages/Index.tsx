@@ -3,6 +3,7 @@ import LogoCarousel from "@/components/LogoCarousel";
 import SystemProcess from "@/components/SystemProcess";
 import ROICalculator from "@/components/ROICalculator";
 import GrowthInfrastructure from "@/components/GrowthInfrastructure";
+import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 
 const Index = () => {
@@ -13,6 +14,7 @@ const Index = () => {
       <SystemProcess />
       <GrowthInfrastructure />
       <ROICalculator />
+      <FAQ />
       <FinalCTA />
     </div>
   );
