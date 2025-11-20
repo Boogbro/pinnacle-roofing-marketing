@@ -54,7 +54,7 @@ const LogoCarousel = () => {
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <h2 className="text-center text-muted-foreground text-sm uppercase tracking-wider mb-12 font-light">
-          Trusted by Industry Leaders
+          Featured in Trusted Publications
         </h2>
 
         {/* Glassmorphism container with gradient overlay */}
