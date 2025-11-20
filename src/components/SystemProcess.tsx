@@ -45,7 +45,7 @@ const SystemProcess = () => {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     if (sectionRef.current) {
@@ -56,19 +56,15 @@ const SystemProcess = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="system-process" className="py-32 px-6 relative overflow-hidden">
+    <section ref={sectionRef} id="system-process" className="py-24 px-6 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-secondary/20 via-background to-background"></div>
-      
+
       <div className="container relative z-10 max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-20 space-y-4">
-          <h2 className="text-4xl md:text-6xl font-bold">
-            The System
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            How We Deliver Premium Appointments
-          </p>
+          <h2 className="text-4xl md:text-6xl font-bold">The System</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">How We Deliver Premium Appointments</p>
         </div>
 
         {/* Steps */}
@@ -76,7 +72,7 @@ const SystemProcess = () => {
           {steps.map((step, index) => {
             const Icon = step.icon;
             const isVisible = visibleSteps.includes(index);
-            
+
             return (
               <div
                 key={index}
@@ -88,9 +84,7 @@ const SystemProcess = () => {
                 <div className="flex flex-col md:flex-row items-start gap-6">
                   {/* Step Number & Icon */}
                   <div className="flex items-center gap-6 flex-shrink-0">
-                    <div className="text-6xl md:text-7xl font-bold text-primary/20">
-                      {step.number}
-                    </div>
+                    <div className="text-6xl md:text-7xl font-bold text-primary/20">{step.number}</div>
                     <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20">
                       <Icon className="w-8 h-8 text-primary" />
                     </div>
@@ -98,12 +92,8 @@ const SystemProcess = () => {
 
                   {/* Content */}
                   <div className="flex-1 space-y-3">
-                    <h3 className="text-2xl md:text-3xl font-bold">
-                      {step.title}
-                    </h3>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                      {step.description}
-                    </p>
+                    <h3 className="text-2xl md:text-3xl font-bold">{step.title}</h3>
+                    <p className="text-lg text-muted-foreground leading-relaxed">{step.description}</p>
                   </div>
                 </div>
               </div>
