@@ -53,7 +53,7 @@ const SystemProcess = () => {
 
       <div className="container relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="mb-16 md:mb-24 max-w-3xl">
+        <div className="mb-8 md:mb-12 max-w-3xl">
           <h2 className="text-4xl md:text-7xl font-bold tracking-tight mb-6">
             The <span className="gradient-text">System</span>
           </h2>
