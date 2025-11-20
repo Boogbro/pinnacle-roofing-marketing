@@ -13,11 +13,14 @@ const Hero = ({ children }: HeroProps) => {
       {/* Animated Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-background"></div>
-        
+
         {/* Animated particles/geometric shapes - KEPT FOR DESIGN */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-[100px] animate-float"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-[120px] animate-float" style={{ animationDelay: "2s" }}></div>
-        
+        <div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-[120px] animate-float"
+          style={{ animationDelay: "2s" }}
+        ></div>
+
         {/* Grid pattern - KEPT FOR DESIGN */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
       </div>
@@ -40,7 +43,7 @@ const Hero = ({ children }: HeroProps) => {
 
           {/* CTA */}
           <div className="animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            <Button 
+            <Button
               size="lg"
               className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground glow hover:scale-105 transition-all duration-300 group"
               asChild
@@ -52,14 +55,14 @@ const Hero = ({ children }: HeroProps) => {
             </Button>
           </div>
         </div>
-        
+
         {/* Video Player Component - Replaced old placeholder with new component */}
         <div className="w-full max-w-7xl px-4 md:px-6 pt-12">
-            <VideoPlayer 
-                videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&modestbranding=1&rel=0" // Placeholder URL
-                className="animate-scale-in"
-                style={{ animationDelay: "0.2s" }}
-            />
+          <VideoPlayer
+            videoUrl="https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691ea48c88e1e6a552a66250.mp4" // Placeholder URL
+            className="animate-scale-in"
+            style={{ animationDelay: "0.2s" }}
+          />
         </div>
       </div>
 
