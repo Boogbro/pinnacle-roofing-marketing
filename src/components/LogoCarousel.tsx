@@ -48,10 +48,10 @@ const logos = [
 
 const LogoCarousel = () => {
   return (
-    <div className="relative z-10 py-8 w-full">
+    <div className="relative z-10 py-6 w-full">
       <div className="container mx-auto max-w-7xl relative z-10">
-        <p className="text-center text-slate-500 text-xs font-bold uppercase tracking-[0.2em] mb-6 animate-fade-in">
-          Featured In Major Publications
+        <p className="text-center text-slate-400/70 text-[10px] font-bold uppercase tracking-[0.2em] mb-6 animate-fade-in">
+          Trusted By Top Publications
         </p>
 
         <div className="relative px-4">
@@ -76,15 +76,14 @@ const LogoCarousel = () => {
                     rel="noopener noreferrer"
                     className="block p-2 transition-all duration-300 group"
                   >
-                    {/* Using CSS filters to force white logos:
-                      brightness-0: Makes it black
-                      invert: Turns black to white
-                      opacity: Controls subtlety
-                    */}
+                    {/* Reverted to original "Grayscale -> Color" effect
+                        Added 'invert' only if necessary for dark mode visibility,
+                        but removing 'brightness-0' restores the details.
+                     */}
                     <img
                       src={logo.imgSrc}
                       alt={logo.name}
-                      className="w-full h-8 object-contain opacity-30 group-hover:opacity-100 transition-all duration-500 filter brightness-0 invert"
+                      className="w-full h-8 object-contain opacity-40 group-hover:opacity-100 transition-all duration-500 filter grayscale hover:grayscale-0"
                     />
                   </a>
                 </CarouselItem>
