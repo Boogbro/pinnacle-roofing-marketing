@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => ({
           vendor: ["react", "react-dom", "react-router-dom"],
           ui: ["@radix-ui/react-dialog", "@radix-ui/react-slot", "lucide-react"],
           charts: ["recharts"],
-          animations: ["framer-motion", "tailwindcss-animate"],
+          animations: ["tailwindcss-animate"],
         },
       },
     },
