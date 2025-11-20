@@ -1,4 +1,4 @@
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
 const logos = [
@@ -48,9 +48,10 @@ const logos = [
 
 const LogoCarousel = () => {
   return (
-    <div className="relative z-10 py-6 w-full">
+    <div className="relative z-10 py-10 w-full">
       <div className="container mx-auto max-w-7xl relative z-10">
-        <p className="text-center text-slate-400/70 text-[10px] font-bold uppercase tracking-[0.2em] mb-6 animate-fade-in">
+        {/* Label */}
+        <p className="text-center text-slate-400/70 text-[10px] font-bold uppercase tracking-[0.2em] mb-8 animate-fade-in">
           Trusted By Top Publications
         </p>
 
@@ -69,21 +70,26 @@ const LogoCarousel = () => {
           >
             <CarouselContent className="-ml-4 flex items-center">
               {logos.map((logo) => (
-                <CarouselItem key={logo.id} className="pl-4 basis-1/2 md:basis-1/4 lg:basis-1/6">
+                // Adjusted basis: wider slots for bigger logos
+                // Mobile: 2 per row (basis-1/2)
+                // Tablet: 3 per row (basis-1/3)
+                // Desktop: 5 per row (basis-1/5)
+                <CarouselItem key={logo.id} className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/5">
                   <a
                     href={logo.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block p-2 transition-all duration-300 group"
+                    className="block p-4 transition-all duration-300 group"
                   >
-                    {/* Reverted to original "Grayscale -> Color" effect
-                        Added 'invert' only if necessary for dark mode visibility,
-                        but removing 'brightness-0' restores the details.
-                     */}
+                    {/* Updated styling:
+                      - h-12 (mobile) -> h-16 (desktop) for larger size
+                      - object-contain ensures they don't get cut off
+                      - grayscale -> color on hover
+                    */}
                     <img
                       src={logo.imgSrc}
                       alt={logo.name}
-                      className="w-full h-8 object-contain opacity-40 group-hover:opacity-100 transition-all duration-500 filter grayscale hover:grayscale-0"
+                      className="w-full h-12 sm:h-16 object-contain opacity-50 group-hover:opacity-100 transition-all duration-500 filter grayscale hover:grayscale-0"
                     />
                   </a>
                 </CarouselItem>
