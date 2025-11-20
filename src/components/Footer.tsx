@@ -86,7 +86,7 @@ const Footer = ({ onBookClick }: FooterProps) => {
 
         {/* Bottom Bar: Legal & Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center text-xs text-muted-foreground pt-4">
-          <p>&copy; {currentYear} SP Digital Growth. All rights reserved.</p>
+          <p>&copy; {currentYear} Pinnacle Roofing Marketing. All rights reserved.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <Link to="/privacy-policy" className="hover:text-primary transition-colors">
               Privacy Policy
