@@ -13,19 +13,17 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
       id="hero"
       className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden pt-32 pb-12"
     >
-      {/* --- 1. Background Video Layer (AI Montage) --- */}
+      {/* --- 1. Background Video Layer --- */}
       <div className="absolute inset-0 z-0">
         <video
-          className="w-full h-full object-cover opacity-30 scale-105 animate-slow-pan"
+          className="w-full h-full object-cover opacity-40 scale-105 animate-slow-pan"
           autoPlay
           muted
           loop
           playsInline
           poster="/placeholder.svg"
         >
-          {/* REPLACE THE SRC BELOW with your actual AI-generated video link.
-            (e.g., a link from Cloudinary, AWS S3, or your AI tool)
-          */}
+          {/* Background Video Link */}
           <source
             src="https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691eddf9330ab522c0d78d91.mp4"
             type="video/mp4"
@@ -33,11 +31,13 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
         </video>
 
         {/* Visual Overlays for Text Readability */}
-        {/* Dark slate tint */}
+        {/* Dark slate tint to push video to background */}
         <div className="absolute inset-0 bg-slate-950/85 mix-blend-multiply z-10" />
-        {/* Vertical fade at the bottom */}
+
+        {/* Vertical fade at the bottom for seamless transition */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-20" />
-        {/* Radial spotlight in the center */}
+
+        {/* Radial spotlight to highlight the center content */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(15,23,42,0.8)_100%)] z-20" />
       </div>
 
@@ -45,14 +45,14 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
       <div className="container relative z-30 px-4 md:px-6 flex flex-col items-center text-center space-y-8">
         {/* Headline Area */}
         <div className="max-w-4xl space-y-6 animate-fade-in">
-          {/* Authority Badge */}
+          {/* Authority/Scarcity Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md mb-6 animate-fade-in-up shadow-[0_0_15px_rgba(234,179,8,0.2)]">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
             <span className="text-primary text-xs font-bold tracking-widest uppercase">
-              Agency for Elite Contractors
+              Exclusive Territory Available
             </span>
           </div>
 
@@ -66,41 +66,39 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
 
           {/* Subheadline */}
           <p className="text-lg md:text-2xl text-slate-300 max-w-2xl mx-auto leading-relaxed font-light">
-            The automated growth infrastructure that fills your calendar with high-value jobs—painting, roofing, and
-            renovations.
+            The automated growth infrastructure that fills your calendar with high-value roofing and contracting jobs.
           </p>
 
-          {/* CTA Button */}
+          {/* Primary CTA */}
           <div
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
             <Button
               size="lg"
-              className="h-14 px-10 text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_40px_-10px_rgba(234,179,8,0.6)] transition-all duration-300 hover:scale-105 font-bold uppercase tracking-wide"
+              className="h-14 px-10 text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_40px_-10px_rgba(234,179,8,0.6)] transition-all duration-300 hover:scale-105 font-bold uppercase tracking-wide group"
               onClick={onBookClick}
             >
-              Get Your Territory
-              <ArrowRight className="ml-2 h-5 w-5" />
+              Claim Your Market
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>
 
         {/* --- 3. VSL Player (Center Stage) --- */}
-        {/* This component is visible immediately on load */}
         <div
           className="w-full max-w-4xl mx-auto relative group mt-8 perspective-1000"
           style={{ animationDelay: "0.4s" }}
         >
-          {/* Floating "Watch Analysis" Label */}
-          <div className="absolute -top-12 right-0 md:-right-12 bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-xl hidden md:block animate-float">
+          {/* Floating Label - Hidden on small mobile */}
+          <div className="absolute -top-12 right-0 md:-right-12 bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-xl hidden md:block animate-float z-30">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
                 <PlayCircle size={24} />
               </div>
               <div className="text-left">
                 <p className="text-xs text-muted-foreground uppercase tracking-wider">Watch Analysis</p>
-                <p className="text-sm font-bold text-white">How We Scale to $5M+</p>
+                <p className="text-sm font-bold text-white">Scaling to $5M+</p>
               </div>
             </div>
           </div>
@@ -111,7 +109,7 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
           {/* Main Video Player Container */}
           <div className="relative rounded-2xl border border-white/10 bg-slate-950 shadow-2xl overflow-hidden ring-1 ring-white/10 z-20">
             <VideoPlayer
-              // NOTE: Update this URL to your actual VSL video link if different
+              // Main VSL Video (Analysis/Sales Letter)
               videoUrl="https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691eb27388e1e669aaa7d2c7.mp4"
               className="w-full aspect-video"
             />
