@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Menu, ArrowRight } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,8 @@ interface NavbarProps {
 const Navbar = ({ onBookClick }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +39,16 @@ const Navbar = ({ onBookClick }: NavbarProps) => {
   const handleBookingTrigger = () => {
     setIsMenuOpen(false);
     if (onBookClick) onBookClick();
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const NavContent = () => (
@@ -82,7 +95,7 @@ const Navbar = ({ onBookClick }: NavbarProps) => {
         )}
       >
         {/* Logo/Title */}
-        <a href="#hero" className="flex items-center space-x-2 group" onClick={() => window.scrollTo(0, 0)}>
+        <a href="/" className="flex items-center space-x-2 group" onClick={handleLogoClick}>
           <h1 className="text-xl md:text-2xl font-black">
             <span className="gradient-text">SP Digital Growth</span>
           </h1>
