@@ -43,11 +43,11 @@ const Navbar = ({ onBookClick }: NavbarProps) => {
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100);
     } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -97,7 +97,7 @@ const Navbar = ({ onBookClick }: NavbarProps) => {
         {/* Logo/Title */}
         <a href="/" className="flex items-center space-x-2 group" onClick={handleLogoClick}>
           <h1 className="text-xl md:text-2xl font-black">
-            <span className="gradient-text">SP Digital Growth</span>
+            <span className="gradient-text">Pinnacle Roofing Marketing</span>
           </h1>
         </a>
 
