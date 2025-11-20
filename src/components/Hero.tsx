@@ -9,10 +9,9 @@ interface HeroProps {
 
 const Hero = ({ children, onBookClick }: HeroProps) => {
   return (
-    // Reduced pt-32 to pt-20 for tighter top spacing
     <section
       id="hero"
-      className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden pt-20 pb-12"
+      className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden pt-24 pb-10"
     >
       {/* --- 1. Background Video Layer --- */}
       <div className="absolute inset-0 z-0">
@@ -37,41 +36,41 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
       </div>
 
       {/* --- 2. Main Content Grid --- */}
-      <div className="container relative z-30 px-4 md:px-6 flex flex-col items-center text-center space-y-6">
+      <div className="container relative z-30 px-4 md:px-6 flex flex-col items-center text-center space-y-8">
         {/* Headline Area */}
-        <div className="max-w-4xl space-y-6 animate-fade-in">
+        <div className="max-w-3xl space-y-5 animate-fade-in">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md mb-4 animate-fade-in-up shadow-[0_0_15px_rgba(234,179,8,0.2)]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md mb-2 animate-fade-in-up shadow-[0_0_15px_rgba(234,179,8,0.2)]">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
-            <span className="text-primary text-xs font-bold tracking-widest uppercase">
+            <span className="text-primary text-[10px] font-bold tracking-widest uppercase">
               Exclusive Territory Available
             </span>
           </div>
 
-          {/* Main Title - Reduced sizes: 5xl->4xl, 7xl->6xl, 8xl->7xl */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.1] drop-shadow-2xl">
+          {/* Main Title - Scaled Down */}
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1] drop-shadow-2xl">
             DOMINATE <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-amber-200 to-primary animate-shine bg-[length:200%_auto]">
               YOUR MARKET.
             </span>
           </h1>
 
-          {/* Subheadline */}
-          <p className="text-base md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed font-light">
+          {/* Subheadline - Scaled Down */}
+          <p className="text-sm md:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed font-light">
             The automated growth infrastructure that fills your calendar with high-value roofing and contracting jobs.
           </p>
 
           {/* CTA */}
           <div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 animate-fade-in-up"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-1 animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
             <Button
               size="lg"
-              className="h-12 px-8 text-base bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_40px_-10px_rgba(234,179,8,0.6)] transition-all duration-300 hover:scale-105 font-bold uppercase tracking-wide group"
+              className="h-11 px-8 text-sm bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_30px_-10px_rgba(234,179,8,0.6)] transition-all duration-300 hover:scale-105 font-bold uppercase tracking-wide group"
               onClick={onBookClick}
             >
               Claim Your Market
@@ -81,26 +80,26 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
         </div>
 
         {/* --- 3. VSL Player (Compact) --- */}
-        {/* Reduced max-width from 4xl to 3xl for a tighter look */}
+        {/* Reduced max-width to 2xl for a tighter, modern look */}
         <div
-          className="w-full max-w-3xl mx-auto relative group mt-6 perspective-1000"
+          className="w-full max-w-2xl mx-auto relative group mt-4 perspective-1000"
           style={{ animationDelay: "0.4s" }}
         >
           {/* Floating Label */}
-          <div className="absolute -top-8 right-0 md:-right-8 bg-white/5 backdrop-blur-md border border-white/10 p-3 rounded-xl hidden md:block animate-float z-30">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-                <PlayCircle size={20} />
+          <div className="absolute -top-6 right-0 md:-right-6 bg-white/5 backdrop-blur-md border border-white/10 p-2.5 rounded-xl hidden md:block animate-float z-30">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                <PlayCircle size={16} />
               </div>
               <div className="text-left">
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Watch Analysis</p>
-                <p className="text-xs font-bold text-white">Scaling to $5M+</p>
+                <p className="text-[9px] text-muted-foreground uppercase tracking-wider">Watch Analysis</p>
+                <p className="text-[10px] font-bold text-white">Scaling to $5M+</p>
               </div>
             </div>
           </div>
 
           {/* Glow Effect */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-primary/40 via-amber-500/20 to-primary/40 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
+          <div className="absolute -inset-1 bg-gradient-to-r from-primary/40 via-amber-500/20 to-primary/40 rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
 
           {/* Player Container */}
           <div className="relative rounded-xl border border-white/10 bg-slate-950 shadow-2xl overflow-hidden ring-1 ring-white/10 z-20">
@@ -113,7 +112,8 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
       </div>
 
       {/* --- 4. Footer/Children (Logo Carousel) --- */}
-      <div className="relative z-30 mt-12 border-t border-white/5 bg-slate-950/40 backdrop-blur-md">{children}</div>
+      {/* Removed background color to make it transparent to the video */}
+      <div className="relative z-30 mt-8 border-t border-white/5 bg-transparent">{children}</div>
     </section>
   );
 };
