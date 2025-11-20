@@ -28,14 +28,14 @@ const Hero = ({ children }: HeroProps) => {
       {/* Content Container (Headline, CTA, Video) - flex-1 and justify-center centers content vertically */}
       <div className="container relative z-10 px-6 flex flex-col items-center justify-center flex-1 py-8 md:py-12">
         <div className="max-w-5xl mx-auto text-center space-y-8">
-          {/* Headline - smaller text size for more room */}
+          {/* Headline */}
           <div className="space-y-4 animate-fade-in">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Dominate Your Market.
               <br />
               <span className="gradient-text">We Build Your Growth Engine.</span>
             </h1>
-            {/* Sub-headline - smaller text size for more room */}
+            {/* Sub-headline */}
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
               Exclusive, High-Intent Appointments for Elite Contractors. Guaranteed.
             </p>
@@ -56,8 +56,8 @@ const Hero = ({ children }: HeroProps) => {
           </div>
         </div>
 
-        {/* Video Player Component - Replaced old placeholder with new component */}
-        <div className="w-full max-w-7xl px-4 md:px-6 pt-12">
+        {/* Video Player Component */}
+        <div className="w-full max-w-4xl px-4 md:px-6 pt-12">
           <VideoPlayer
             videoUrl="https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691ea48c88e1e6a552a66250.mp4" // Placeholder URL
             className="animate-scale-in"
