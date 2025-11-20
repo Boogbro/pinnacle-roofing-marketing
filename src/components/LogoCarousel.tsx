@@ -48,15 +48,13 @@ const logos = [
 
 const LogoCarousel = () => {
   return (
-    // Removed -mt-16 and adjusted pb-12 to pb-6 for a tighter fit at the bottom of the viewport
-    <div className="relative z-10 pb-6 w-full">
+    <div className="relative z-10 py-8 w-full">
       <div className="container mx-auto max-w-7xl relative z-10">
-        <h2 className="text-center text-muted-foreground text-sm uppercase tracking-wider mb-8 font-light">
-          Trusted by top publications
-        </h2>
+        <p className="text-center text-slate-500 text-xs font-bold uppercase tracking-[0.2em] mb-6 animate-fade-in">
+          Featured In Major Publications
+        </p>
 
-        {/* Removed glassmorphism card and gradient overlay */}
-        <div className="relative">
+        <div className="relative px-4">
           <Carousel
             opts={{
               align: "start",
@@ -64,34 +62,34 @@ const LogoCarousel = () => {
             }}
             plugins={[
               Autoplay({
-                delay: 3000,
+                delay: 2500,
               }),
             ]}
             className="w-full"
           >
-            <CarouselContent className="-ml-4">
+            <CarouselContent className="-ml-4 flex items-center">
               {logos.map((logo) => (
-                <CarouselItem key={logo.id} className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/5 xl:basis-1/6">
+                <CarouselItem key={logo.id} className="pl-4 basis-1/2 md:basis-1/4 lg:basis-1/6">
                   <a
                     href={logo.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    // Simplified styling for integration
-                    className="block p-4 transition-opacity duration-300"
+                    className="block p-2 transition-all duration-300 group"
                   >
+                    {/* Using CSS filters to force white logos:
+                      brightness-0: Makes it black
+                      invert: Turns black to white
+                      opacity: Controls subtlety
+                    */}
                     <img
                       src={logo.imgSrc}
                       alt={logo.name}
-                      // Reduced height and emphasized grayscale/opacity for seamless look
-                      className="w-full h-10 object-contain opacity-40 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+                      className="w-full h-8 object-contain opacity-30 group-hover:opacity-100 transition-all duration-500 filter brightness-0 invert"
                     />
                   </a>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            {/* Hidden navigation buttons for a more subtle look */}
-            <CarouselPrevious className="hidden" />
-            <CarouselNext className="hidden" />
           </Carousel>
         </div>
       </div>
