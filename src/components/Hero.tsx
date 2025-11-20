@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, PlayCircle } from "lucide-react";
 import VideoPlayer from "@/components/VideoPlayer";
 
 interface HeroProps {
@@ -11,114 +11,119 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden pt-24 pb-12"
+      className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden pt-32 pb-12"
     >
-      {/* --- 1. Dynamic Background Layer --- */}
+      {/* --- 1. Background Video Layer (AI Montage) --- */}
       <div className="absolute inset-0 z-0">
-        {/* Gradient Overlay for readability */}
-        <div className="absolute inset-0 bg-slate-950/90 z-10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent z-20" />
-
-        {/* Background Video Placeholder */}
-        {/* Replace 'src' with a high-quality roofing or construction B-roll */}
         <video
-          className="w-full h-full object-cover opacity-40 grayscale"
+          className="w-full h-full object-cover opacity-30 scale-105 animate-slow-pan"
           autoPlay
           muted
           loop
           playsInline
           poster="/placeholder.svg"
         >
+          {/* REPLACE THE SRC BELOW with your actual AI-generated video link.
+            (e.g., a link from Cloudinary, AWS S3, or your AI tool)
+          */}
           <source
-            src="https://assets.mixkit.co/videos/preview/mixkit-cloudy-sky-over-the-mountains-2688-large.mp4"
+            src="https://assets.mixkit.co/videos/preview/mixkit-man-working-on-a-roof-of-a-house-12671-large.mp4"
             type="video/mp4"
           />
         </video>
 
-        {/* Animated ambient light effects */}
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[120px] animate-pulse z-20 pointer-events-none" />
-        <div
-          className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-orange-600/10 rounded-full blur-[120px] animate-pulse z-20 pointer-events-none"
-          style={{ animationDelay: "2s" }}
-        />
+        {/* Visual Overlays for Text Readability */}
+        {/* Dark slate tint */}
+        <div className="absolute inset-0 bg-slate-950/85 mix-blend-multiply z-10" />
+        {/* Vertical fade at the bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-20" />
+        {/* Radial spotlight in the center */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(15,23,42,0.8)_100%)] z-20" />
       </div>
 
       {/* --- 2. Main Content Grid --- */}
-      <div className="container relative z-30 px-4 md:px-6 flex flex-col items-center text-center space-y-10">
+      <div className="container relative z-30 px-4 md:px-6 flex flex-col items-center text-center space-y-8">
         {/* Headline Area */}
         <div className="max-w-4xl space-y-6 animate-fade-in">
-          {/* Scarcity Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold tracking-wider uppercase backdrop-blur-md mb-4 animate-fade-in-up">
+          {/* Authority Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md mb-6 animate-fade-in-up shadow-[0_0_15px_rgba(234,179,8,0.2)]">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
-            Exclusive Territory: Q4 Intake Open
+            <span className="text-primary text-xs font-bold tracking-widest uppercase">
+              Agency for Elite Contractors
+            </span>
           </div>
 
           {/* Main Title */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[1.1]">
-            REACH THE <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-amber-300 to-primary drop-shadow-sm">
-              PINNACLE.
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[1.1] drop-shadow-2xl">
+            DOMINATE <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-amber-200 to-primary animate-shine bg-[length:200%_auto]">
+              YOUR MARKET.
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-2xl text-slate-300 max-w-2xl mx-auto leading-relaxed font-light">
-            The specialized growth infrastructure for roofing contractors who refuse to compete on price.
+            The automated growth infrastructure that fills your calendar with high-value jobs—painting, roofing, and
+            renovations.
           </p>
 
-          {/* CTAs */}
+          {/* CTA Button */}
           <div
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
             <Button
               size="lg"
-              className="h-14 px-8 text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_40px_-10px_rgba(234,179,8,0.5)] transition-all duration-300 hover:scale-105 font-bold"
+              className="h-14 px-10 text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_40px_-10px_rgba(234,179,8,0.6)] transition-all duration-300 hover:scale-105 font-bold uppercase tracking-wide"
               onClick={onBookClick}
             >
-              Claim Your Market
+              Get Your Territory
               <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="h-14 px-8 text-lg border-white/10 bg-white/5 text-white hover:bg-white/10 hover:border-primary/50 transition-all backdrop-blur-sm"
-              onClick={() => document.getElementById("system-process")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              See The System
             </Button>
           </div>
         </div>
 
         {/* --- 3. VSL Player (Center Stage) --- */}
+        {/* This component is visible immediately on load */}
         <div
-          className="w-full max-w-5xl mx-auto relative group animate-scale-in perspective-1000"
+          className="w-full max-w-4xl mx-auto relative group mt-8 perspective-1000"
           style={{ animationDelay: "0.4s" }}
         >
-          {/* Glow Effect behind player */}
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-orange-500 to-primary rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200" />
+          {/* Floating "Watch Analysis" Label */}
+          <div className="absolute -top-12 right-0 md:-right-12 bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-xl hidden md:block animate-float">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                <PlayCircle size={24} />
+              </div>
+              <div className="text-left">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">Watch Analysis</p>
+                <p className="text-sm font-bold text-white">How We Scale to $5M+</p>
+              </div>
+            </div>
+          </div>
 
-          <div className="relative rounded-2xl border border-white/10 bg-slate-950/80 backdrop-blur-xl shadow-2xl overflow-hidden ring-1 ring-white/10">
+          {/* Glow Effect behind player */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-primary/40 via-amber-500/20 to-primary/40 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
+
+          {/* Main Video Player Container */}
+          <div className="relative rounded-2xl border border-white/10 bg-slate-950 shadow-2xl overflow-hidden ring-1 ring-white/10 z-20">
             <VideoPlayer
+              // NOTE: Update this URL to your actual VSL video link if different
               videoUrl="https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691eb27388e1e669aaa7d2c7.mp4"
               className="w-full aspect-video"
             />
           </div>
 
-          {/* Trust Label under video */}
-          <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-full text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-            <p className="text-sm text-muted-foreground font-medium tracking-widest uppercase">
-              Watch the 2-minute Breakdown
-            </p>
-          </div>
+          {/* Floor Reflection Effect */}
+          <div className="absolute -bottom-10 left-4 right-4 h-10 bg-primary/20 blur-3xl rounded-[100%] opacity-40 pointer-events-none"></div>
         </div>
       </div>
 
-      {/* --- 4. Footer/Carousel Integration --- */}
-      <div className="relative z-30 mt-20 border-t border-white/5 bg-slate-950/50 backdrop-blur-md">{children}</div>
+      {/* --- 4. Footer/Children (Logo Carousel) --- */}
+      <div className="relative z-30 mt-16 border-t border-white/5 bg-slate-950/30 backdrop-blur-sm">{children}</div>
     </section>
   );
 };
