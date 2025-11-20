@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-const FinalCTA = () => {
+interface FinalCTAProps {
+  onBookClick?: () => void;
+}
+
+const FinalCTA = ({ onBookClick }: FinalCTAProps) => {
   return (
     <section id="contact-us" className="py-24 px-6 relative overflow-hidden">
       {/* Background effects */}
@@ -27,6 +31,7 @@ const FinalCTA = () => {
             <Button
               size="lg"
               className="text-lg px-10 py-7 bg-primary hover:bg-primary/90 text-primary-foreground glow hover:scale-105 transition-all duration-300 group"
+              onClick={onBookClick}
             >
               Get Your Free Growth Blueprint
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
