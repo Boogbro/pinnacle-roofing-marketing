@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
+  { href: "/testimonials", label: "Results" },
   { href: "#system-process", label: "Process" },
   { href: "#infrastructure", label: "Infrastructure" },
   { href: "#roi-calculator", label: "ROI" },
