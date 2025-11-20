@@ -2,49 +2,48 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Autoplay from "embla-carousel-autoplay";
 
 const LogoCarousel = () => {
-  // Placeholder data for 7 logos - users will replace these
   const logos = [
     {
       id: 1,
-      name: "Company 1",
+      name: "Benzinga",
       url: "https://toplimbmedia.com",
       imgSrc: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/68c78eb613643fd514ad8267.webp",
     },
     {
       id: 2,
-      name: "Company 2",
-      url: "https://example.com",
-      imgSrc: "https://placeholder.svg/400x200/1a1a2e/00ffff?text=Logo+2",
+      name: "The Globe and Mail",
+      url: "https://toplimbmedia.com",
+      imgSrc: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/68c78eb634fadb546f515a49.webp",
     },
     {
       id: 3,
-      name: "Company 3",
-      url: "https://example.com",
-      imgSrc: "https://placeholder.svg/400x200/1a1a2e/00ffff?text=Logo+3",
+      name: "News Channel Nebraska",
+      url: "https://toplimbmedia.com",
+      imgSrc: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/68c78eb634fadb70d9515a4a.png",
     },
     {
       id: 4,
-      name: "Company 4",
-      url: "https://example.com",
-      imgSrc: "https://placeholder.svg/400x200/1a1a2e/00ffff?text=Logo+4",
+      name: "Chronicle Journal",
+      url: "https://toplimbmedia.com",
+      imgSrc: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/68c78eb6f994d956bf869f72.jpeg",
     },
     {
       id: 5,
-      name: "Company 5",
-      url: "https://example.com",
-      imgSrc: "https://placeholder.svg/400x200/1a1a2e/00ffff?text=Logo+5",
+      name: "Barchart",
+      url: "https://toplimbmedia.com",
+      imgSrc: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/68c78eb6f994d9c867869f73.png",
     },
     {
       id: 6,
-      name: "Company 6",
-      url: "https://example.com",
-      imgSrc: "https://placeholder.svg/400x200/1a1a2e/00ffff?text=Logo+6",
+      name: "Business Insider",
+      url: "https://toplimbmedia.com",
+      imgSrc: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/68c78eb6f994d9c867869f73.png",
     },
     {
       id: 7,
-      name: "Company 7",
-      url: "https://example.com",
-      imgSrc: "https://placeholder.svg/400x200/1a1a2e/00ffff?text=Logo+7",
+      name: "Financial Content",
+      url: "https://toplimbmedia.com",
+      imgSrc: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/68c7905c1708d01ea27e14ea.png",
     },
   ];
 
