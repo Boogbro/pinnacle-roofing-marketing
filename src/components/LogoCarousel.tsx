@@ -48,8 +48,8 @@ const logos = [
 
 const LogoCarousel = () => {
   return (
-    // Updated container for seamless integration, removing section wrapper
-    <div className="relative z-10 -mt-16 pb-12 w-full">
+    // Removed -mt-16 and adjusted pb-12 to pb-6 for a tighter fit at the bottom of the viewport
+    <div className="relative z-10 pb-6 w-full">
       <div className="container mx-auto max-w-7xl relative z-10">
         <h2 className="text-center text-muted-foreground text-sm uppercase tracking-wider mb-8 font-light">
           Trusted by top publications
