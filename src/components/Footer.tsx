@@ -25,7 +25,7 @@ const Footer = ({ onBookClick }: FooterProps) => {
           <div className="col-span-2 md:col-span-1 space-y-4">
             <a href="/" className="flex items-center space-x-2">
               <h1 className="text-2xl font-black">
-                <span className="gradient-text">SP Digital Growth</span>
+                <span className="gradient-text">Pinnacle Roofing Marketing</span>
               </h1>
             </a>
             <p className="text-sm text-muted-foreground">Elite Contractor Marketing. Guaranteed Results.</p>
