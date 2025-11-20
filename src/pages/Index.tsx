@@ -9,7 +9,9 @@ import Navbar from "@/components/Navbar";
 
 const Index = () => {
   return (
-    <div className="min-h-screen pt-20"> {/* Added pt-20 to account for fixed navbar height */}
+    <div className="min-h-screen pt-0">
+      {" "}
+      {/* Added pt-20 to account for fixed navbar height */}
       <Navbar />
       <Hero />
       <LogoCarousel />
