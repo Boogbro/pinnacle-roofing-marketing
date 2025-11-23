@@ -42,9 +42,9 @@ const testimonials = [
     type: "image",
     // REPLACE with an image URL you extracted
     url: "https://placehold.co/600x400/1e293b/white?text=Client+Result+Image+2",
-    title: "Market Domination Strategy",
-    author: "Summit Contractors",
-    result: "Exclusive Territory",
+    title: "21 Roofs Closed in 60 Days",
+    author: "Kolbie Schilson, Eminent Roofing Solutions",
+    result: "21 Roofs Closed",
   },
   // Add more testimonials here...
 ];
