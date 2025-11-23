@@ -22,6 +22,14 @@ const testimonials = [
   },
   {
     id: 2,
+    type: "video",
+    url: "https://pinnacleroofingmarketing.com/wp-content/uploads/2025/06/Matt-Farmer-Testimonial-Final.mp4",
+    title: "2+ Roof Replacement Appointments Daily",
+    author: "Matt Farmer, Far More Roofing and Construction",
+    result: "Hiring New Salesman",
+  },
+  {
+    id: 3,
     type: "image",
     // REPLACE with an image URL you extracted
     url: "https://placehold.co/600x400/1e293b/white?text=Client+Result+Image+1", 
@@ -30,7 +38,7 @@ const testimonials = [
     result: "$120k Pipeline",
   },
   {
-    id: 3,
+    id: 4,
     type: "image",
     // REPLACE with an image URL you extracted
     url: "https://placehold.co/600x400/1e293b/white?text=Client+Result+Image+2",
