@@ -33,9 +33,9 @@ const testimonials = [
     type: "image",
     // REPLACE with an image URL you extracted
     url: "https://placehold.co/600x400/1e293b/white?text=Client+Result+Image+1", 
-    title: "21 Roofs Closed in 60 Days",
-    author: "Kolbie Schilson, Eminent Roofing Solutions",
-    result: "21 Roofs Closed",
+    title: "3 Jobs Closed in Week 1",
+    author: "Gary, Fortress Roofing",
+    result: "3 Jobs Closed",
   },
   {
     id: 4,
