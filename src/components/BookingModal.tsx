@@ -83,7 +83,7 @@ const BookingModal = ({ isOpen, onOpenChange }: BookingModalProps) => {
               </div>
             )}
             <iframe
-              src="https://calendly.com/penmatsasujit2/45min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0f111a&text_color=ffffff&primary_color=3b82f6"
+              src="https://api.leadconnectorhq.com/widget/booking/8V7oS2qwyoQZRC8syytp"
               width="100%"
               height="100%"
               frameBorder="0"
