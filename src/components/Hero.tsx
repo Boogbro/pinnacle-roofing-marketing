@@ -64,22 +64,6 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
             Full kitchen remodel appointments, full gut primary baths, and roof replacements—screened for design, permit, or financing readiness. Qualified for high-end scope of work with ideal start windows inside 30 to 60 days. We deliver truly prequalified appointments, not overpromised "quality estimates." No shared leads, strict qualifying criteria, one partner per service area.
           </p>
 
-          {/* Three Fast Trust Bullets */}
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6 pt-2">
-            <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
-              <CheckCircle className="w-4 h-4 text-primary" />
-              <span>Qualified only, high-end scope, design/permit/financing approved</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
-              <MapPin className="w-4 h-4 text-primary" />
-              <span>Local & exclusive, one partner per service area</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
-              <Shield className="w-4 h-4 text-primary" />
-              <span>Simple model, pay per qualified estimate delivered</span>
-            </div>
-          </div>
-
           {/* CTAs */}
           <div
             className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3 animate-fade-in-up"
@@ -130,6 +114,22 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
           <p className="text-xs text-slate-400 text-center mt-4 max-w-xl mx-auto italic">
             Most examples in the video show roofing results. The same AI & human mix appointment-setting engine powers high-ticket kitchen and bath remodels with design-ready or financing-approved homeowners.
           </p>
+
+          {/* Three Fast Trust Bullets */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 pt-4">
+            <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
+              <CheckCircle className="w-4 h-4 text-primary" />
+              <span>Qualified only, high-end scope, design/permit/financing approved</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
+              <MapPin className="w-4 h-4 text-primary" />
+              <span>Local & exclusive, one partner per service area</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
+              <Shield className="w-4 h-4 text-primary" />
+              <span>Simple model, pay per qualified estimate delivered</span>
+            </div>
+          </div>
         </div>
       </div>
 
