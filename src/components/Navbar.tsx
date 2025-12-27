@@ -138,7 +138,7 @@ const Navbar = ({ onBookClick }: NavbarProps) => {
               {/* Logo in Sheet Header */}
               <div className="pb-6 border-b border-border/50">
                 <h1 className="text-xl md:text-2xl font-black">
-                  <span className="gradient-text">SP Digital Growth</span>
+                  <span className="gradient-text">Pinnacle Roofing Marketing</span>
                 </h1>
               </div>
               <NavContent />
