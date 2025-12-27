@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, PlayCircle } from "lucide-react";
+import { ArrowRight, PlayCircle, CheckCircle, MapPin, Shield } from "lucide-react";
 import VideoPlayer from "@/components/VideoPlayer";
 
 interface HeroProps {
@@ -38,7 +38,7 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
       {/* --- 2. Main Content Grid --- */}
       <div className="container relative z-30 px-4 md:px-6 flex flex-col items-center text-center space-y-8">
         {/* Headline Area */}
-        <div className="max-w-3xl space-y-5 animate-fade-in">
+        <div className="max-w-4xl space-y-5 animate-fade-in">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md mb-2 animate-fade-in-up shadow-[0_0_15px_rgba(234,179,8,0.2)]">
             <span className="relative flex h-2 w-2">
@@ -46,41 +46,58 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
             <span className="text-primary text-[10px] font-bold tracking-widest uppercase">
-              Exclusive Territory Available
+              Pay Per Qualified Appointment
             </span>
           </div>
 
-          {/* Main Title - Scaled Down */}
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1] drop-shadow-2xl">
-            DOMINATE <br />
+          {/* Main Title */}
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-black tracking-tight text-white leading-[1.15] drop-shadow-2xl">
+            We send general contractors, remodelers, and roofers{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-amber-200 to-primary animate-shine bg-[length:200%_auto]">
-              YOUR MARKET.
-            </span>
+              10 to 30+ qualified, exclusive estimates
+            </span>{" "}
+            each month
           </h1>
 
-          {/* Subheadline - Scaled Down */}
-          <p className="text-sm md:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed font-light">
-            The automated growth infrastructure that fills your calendar with high-value roofing and contracting jobs.
+          {/* Subheadline */}
+          <p className="text-sm md:text-base text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
+            Full kitchen remodel appointments, full gut primary baths, and roof replacements—screened for design, permit, or financing readiness. Qualified for high-end scope of work with ideal start windows inside 30 to 60 days. We deliver truly prequalified appointments, not overpromised "quality estimates." No shared leads, strict qualifying criteria, one partner per service area.
           </p>
 
-          {/* CTA */}
+          {/* Three Fast Trust Bullets */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 pt-2">
+            <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
+              <CheckCircle className="w-4 h-4 text-primary" />
+              <span>Qualified only, high-end scope, design/permit/financing approved</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
+              <MapPin className="w-4 h-4 text-primary" />
+              <span>Local & exclusive, one partner per service area</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
+              <Shield className="w-4 h-4 text-primary" />
+              <span>Simple model, pay per qualified estimate delivered</span>
+            </div>
+          </div>
+
+          {/* CTAs */}
           <div
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-1 animate-fade-in-up"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3 animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
             <Button
               size="lg"
               className="h-11 px-8 text-sm bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_30px_-10px_rgba(234,179,8,0.6)] transition-all duration-300 hover:scale-105 font-bold uppercase tracking-wide group"
               onClick={onBookClick}
+              data-testid="button-book-capacity-check"
             >
-              Claim Your Market
+              Book Your Capacity Check
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>
 
         {/* --- 3. VSL Player (Compact) --- */}
-        {/* Reduced max-width to 2xl for a tighter, modern look */}
         <div
           className="w-full max-w-2xl mx-auto relative group mt-4 perspective-1000"
           style={{ animationDelay: "0.4s" }}
@@ -92,8 +109,8 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
                 <PlayCircle size={16} />
               </div>
               <div className="text-left">
-                <p className="text-[9px] text-muted-foreground uppercase tracking-wider">Watch Analysis</p>
-                <p className="text-[10px] font-bold text-white">Scaling to $5M+</p>
+                <p className="text-[9px] text-muted-foreground uppercase tracking-wider">Watch Preview</p>
+                <p className="text-[10px] font-bold text-white">10 Minute Overview</p>
               </div>
             </div>
           </div>
@@ -108,11 +125,15 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
               className="w-full aspect-video"
             />
           </div>
+
+          {/* Credibility Note */}
+          <p className="text-xs text-slate-400 text-center mt-4 max-w-xl mx-auto italic">
+            Most examples in the video show roofing results. The same AI & human mix appointment-setting engine powers high-ticket kitchen and bath remodels with design-ready or financing-approved homeowners.
+          </p>
         </div>
       </div>
 
       {/* --- 4. Footer/Children (Logo Carousel) --- */}
-      {/* Removed background color to make it transparent to the video */}
       <div className="relative z-30 mt-8 border-t border-white/5 bg-transparent">{children}</div>
     </section>
   );

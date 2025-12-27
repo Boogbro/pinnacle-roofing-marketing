@@ -1,45 +1,41 @@
-import { Target, Brain, Calendar, TrendingUp, ArrowUpRight } from "lucide-react";
+import { ClipboardCheck, Filter, Calendar, TrendingUp, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const steps = [
   {
     number: "01",
-    icon: Target,
-    title: "Market Intelligence & Targeting",
-    description: "We analyze 47+ data points to identify high-intent homeowners in your service area.",
-    className: "md:col-span-2", // Spans 2 columns
+    icon: ClipboardCheck,
+    title: "Capacity Check",
+    description: "We confirm your service area and project mix to ensure we can deliver the right appointments for your business.",
+    className: "md:col-span-1",
     gradient: "from-blue-500/20 via-indigo-500/10 to-transparent",
-    // REPLACE WITH YOUR IMAGE URL
     image: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691ec07053e35079ab4dca1e.png",
   },
   {
     number: "02",
-    icon: Brain,
-    title: "AI-Powered Pre-Qualification",
-    description: "Our proprietary AI conducts 12-point qualification calls before they ever reach your calendar.",
-    className: "md:col-span-1", // Spans 1 column
+    icon: Filter,
+    title: "Screening",
+    description: "Homeowners must be design approved, permit ready, or financing approved—and qualified for the scope of work you provide.",
+    className: "md:col-span-1",
     gradient: "from-purple-500/20 via-pink-500/10 to-transparent",
-    // REPLACE WITH YOUR IMAGE URL
     image: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691ec0705c5cab484c042f45.png",
   },
   {
     number: "03",
     icon: Calendar,
-    title: "Exclusive Territory Scheduling",
-    description: "Qualified prospects book directly into your team's calendar. No sharing, no competition.",
-    className: "md:col-span-1", // Spans 1 column
+    title: "Booking",
+    description: "You receive qualified, exclusive estimates directly inside your calendar. No shared leads, no bidding wars.",
+    className: "md:col-span-1",
     gradient: "from-emerald-500/20 via-teal-500/10 to-transparent",
-    // REPLACE WITH YOUR IMAGE URL
     image: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691ec07093893187ceaab482.png",
   },
   {
     number: "04",
     icon: TrendingUp,
-    title: "Local Authority Amplification",
-    description: "We make you the obvious choice in your market, boosting close rates by 34%.",
-    className: "md:col-span-2", // Spans 2 columns
+    title: "Scale",
+    description: "Increase or pause volume by capacity, not by hope. If you're overwhelmed, we pause so you never waste appointments.",
+    className: "md:col-span-3",
     gradient: "from-orange-500/20 via-amber-500/10 to-transparent",
-    // REPLACE WITH YOUR IMAGE URL
     image: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691ec070330ab50a6ad46dd4.png",
   },
 ];
@@ -55,10 +51,11 @@ const SystemProcess = () => {
         {/* Section Header */}
         <div className="mb-8 md:mb-12 max-w-3xl">
           <h2 className="text-4xl md:text-7xl font-bold tracking-tight mb-6">
-            The <span className="gradient-text">System</span>
+            How It Works{" "}
+            <span className="gradient-text">In 60 Seconds</span>
           </h2>
           <p className="text-xl text-muted-foreground leading-relaxed max-w-xl">
-            How We Deliver Premium Appointments. A completely done-for-you infrastructure designed for speed and scale.
+            A completely done-for-you system designed to fill your calendar with high-value appointments.
           </p>
         </div>
 
@@ -86,12 +83,11 @@ const SystemProcess = () => {
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-700 mix-blend-overlay">
                   <img src={step.image} alt={step.title} className="w-full h-full object-cover" loading="lazy" />
-                  {/* Gradient Overlay to fade image into bottom/sides */}
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
                   <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-transparent" />
                 </div>
 
-                <div className="relative h-full flex flex-col justify-between p-8 md:p-10 min-h-[320px] z-10">
+                <div className="relative h-full flex flex-col justify-between p-8 md:p-10 min-h-[280px] z-10">
                   {/* Top Section: Icon & Number */}
                   <div className="flex justify-between items-start mb-8">
                     <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 backdrop-blur-md">

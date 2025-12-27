@@ -9,36 +9,42 @@ interface FAQProps {
 const faqData = [
   {
     id: "item-1",
+    question: "Why does the video say 'Pinnacle Roofing Marketing'? I'm not a roofer.",
+    answer:
+      "Most of our early case studies and major nationwide success were in roofing. The same AI engine and human team now books full kitchen and primary bath estimates using remodel-specific screening—design, permit, or financing readiness. You will see familiar, if not better, results. The process is identical. Remodeling and interior work thrives in winter whereas roofing is constrained to the spring, especially in northern states.",
+  },
+  {
+    id: "item-2",
     question: "How is this different from HomeAdvisor or Angie's List?",
     answer:
       "Exclusive territory rights, never shared leads, no bidding wars. All prospects are pre-qualified for budget, timeline, and decision authority—no competing with other contractors.",
   },
   {
-    id: "item-2",
+    id: "item-3",
     question: "What does the AI qualification process include?",
     answer:
       "Our AI uses a comprehensive checklist: budget verification (for $15k+ projects), timeline, decision-maker, project scope, insurance, financing, urgency, and competitor checks. Only highly qualified leads reach your calendar.",
   },
   {
-    id: "item-3",
+    id: "item-4",
     question: "How much does it typically cost per appointment?",
     answer:
       "$42–$67 per fully qualified booked appointment. Clear pricing—no setup fees, no contracts, no hidden charges.",
   },
   {
-    id: "item-4",
+    id: "item-5",
     question: "How quickly can we start seeing appointments?",
     answer:
       "Most clients see their first appointments in 10–14 days. Full performance optimization in 30–45 days as we refine targeting and scoring.",
   },
   {
-    id: "item-5",
+    id: "item-6",
     question: "What's included in the guarantee?",
     answer:
       "3.2x ROI guarantee within 90 days (with required implementation steps). Otherwise, full refund + $2,500 extra, no risks.",
   },
   {
-    id: "item-6",
+    id: "item-7",
     question: "Do you work with new contracting businesses?",
     answer:
       "Must be established contractors: proper license/insurance, 2+ years' experience, $500k+ annual revenue, sales team, capacity for extra jobs.",

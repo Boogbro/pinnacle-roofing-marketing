@@ -1,6 +1,7 @@
 import { useState, lazy, Suspense } from "react";
 import Hero from "@/components/Hero";
 import LogoCarousel from "@/components/LogoCarousel";
+import WhoWeServe from "@/components/WhoWeServe";
 import SystemProcess from "@/components/SystemProcess";
 import ROICalculator from "@/components/ROICalculator";
 import GrowthInfrastructure from "@/components/GrowthInfrastructure";
@@ -25,6 +26,7 @@ const Index = () => {
       <Hero onBookClick={handleBookClick}>
         <LogoCarousel />
       </Hero>
+      <WhoWeServe onBookClick={handleBookClick} />
       <SystemProcess />
       <GrowthInfrastructure />
       <ROICalculator />
