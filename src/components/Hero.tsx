@@ -114,21 +114,21 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
           <p className="text-xs text-slate-400 text-center mt-4 max-w-xl mx-auto italic">
             Most examples in the video show roofing results. The same AI & human mix appointment-setting engine powers high-ticket kitchen and bath remodels with design-ready or financing-approved homeowners.
           </p>
+        </div>
 
-          {/* Three Fast Trust Bullets */}
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6 pt-4">
-            <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
-              <CheckCircle className="w-4 h-4 text-primary" />
-              <span>Qualified only, high-end scope, design/permit/financing approved</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
-              <MapPin className="w-4 h-4 text-primary" />
-              <span>Local & exclusive, one partner per service area</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
-              <Shield className="w-4 h-4 text-primary" />
-              <span>Simple model, pay per qualified estimate delivered</span>
-            </div>
+        {/* Three Fast Trust Bullets */}
+        <div className="flex flex-wrap justify-center gap-4 md:gap-6 pt-6">
+          <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
+            <CheckCircle className="w-4 h-4 text-primary" />
+            <span>Qualified only, high-end scope, design/permit/financing approved</span>
+          </div>
+          <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
+            <MapPin className="w-4 h-4 text-primary" />
+            <span>Local & exclusive, one partner per service area</span>
+          </div>
+          <div className="flex items-center gap-2 text-xs md:text-sm text-slate-300">
+            <Shield className="w-4 h-4 text-primary" />
+            <span>Simple model, pay per qualified estimate delivered</span>
           </div>
         </div>
       </div>
