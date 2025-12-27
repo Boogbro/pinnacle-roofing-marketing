@@ -24,7 +24,7 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
           poster="/placeholder.svg"
         >
           <source
-            src="https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691eddf9330ab522c0d78d91.mp4"
+            src="https://drive.google.com/file/d/1dd-QQrutOI6BmlnkIg9XBCiKfDIq4Zxq/view?usp=sharing"
             type="video/mp4"
           />
         </video>
