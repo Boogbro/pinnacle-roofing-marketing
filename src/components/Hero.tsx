@@ -24,7 +24,7 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
           poster="/placeholder.svg"
         >
           <source
-            src="https://drive.google.com/file/d/1dd-QQrutOI6BmlnkIg9XBCiKfDIq4Zxq/view?usp=sharing"
+            src="https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691eddf9330ab522c0d78d91.mp4"
             type="video/mp4"
           />
         </video>
@@ -61,7 +61,7 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
 
           {/* Subheadline */}
           <p className="text-sm md:text-base text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
-            Full kitchen remodel appointments, full gut primary baths, and roof replacements—screened for design, permit, or financing readiness. Qualified for high-end scope of work with ideal start windows inside 30 to 60 days. We deliver truly prequalified appointments, not overpromised "quality estimates." No shared leads, strict qualifying criteria, one partner per service area.
+            On a pay per appointment model using our proprietary AI & human mix appointment-setting engine.
           </p>
 
           {/* CTAs */}
