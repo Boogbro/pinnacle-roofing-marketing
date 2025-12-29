@@ -6,6 +6,7 @@ import VideoPlayer from "@/components/VideoPlayer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import garyTestimonialVideo from "@/assets/Gary_Testimonial_Converted_1767052115065.mp4";
 
 // ----------------------------------------------------------------------
 // 1. PASTE YOUR EXTRACTED MEDIA LINKS BELOW
@@ -30,9 +31,8 @@ const testimonials = [
   },
   {
     id: 3,
-    type: "image",
-    // REPLACE with an image URL you extracted
-    url: "https://placehold.co/600x400/1e293b/white?text=Client+Result+Image+1", 
+    type: "video",
+    url: garyTestimonialVideo, 
     title: "3 Jobs Closed in Week 1",
     author: "Gary, Fortress Roofing",
     result: "3 Jobs Closed",
