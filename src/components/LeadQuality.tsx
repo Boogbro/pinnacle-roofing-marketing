@@ -124,7 +124,9 @@ const LottieForwardReverse = ({
 
 const LeadQuality = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isLightBackground, setIsLightBackground] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -133,9 +135,18 @@ const LeadQuality = () => {
       const scrollProgress = -top / (height - window.innerHeight);
       const index = Math.min(Math.max(Math.floor(scrollProgress * features.length), 0), features.length - 1);
       setActiveIndex(index);
+
+      // Check if WhoWeServe section is out of view
+      const whoWeServeSection = document.getElementById('who-we-serve');
+      if (whoWeServeSection) {
+        const whoWeServeRect = whoWeServeSection.getBoundingClientRect();
+        // When the WhoWeServe section is fully above the viewport, switch to dark background
+        setIsLightBackground(whoWeServeRect.bottom > 0);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -151,7 +162,14 @@ const LeadQuality = () => {
   };
 
   return (
-    <section id="quality" className="relative bg-background">
+    <section 
+      id="quality" 
+      ref={sectionRef}
+      className={cn(
+        "relative transition-colors duration-700",
+        isLightBackground ? "bg-[hsl(var(--background-light))]" : "bg-background"
+      )}
+    >
       {/* Header Section */}
       <div className="container max-w-7xl mx-auto px-6 pt-24 md:pt-32 pb-12 md:pb-16 relative">
         {/* Vertical Gradient Line - Above Header */}
@@ -161,7 +179,10 @@ const LeadQuality = () => {
           {/* Glow effect behind header */}
           <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent blur-3xl -z-10" />
 
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+          <h2 className={cn(
+            "text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 transition-colors duration-700",
+            isLightBackground ? "text-[hsl(var(--foreground-light))]" : "text-foreground"
+          )}>
             Beyond the Lead: <br />
             <span className="gradient-text">Truly Prequalified Appointments</span>
           </h2>
