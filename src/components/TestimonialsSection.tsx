@@ -380,7 +380,7 @@ const FullscreenVideoModal = ({ isOpen, onClose, testimonial }: FullscreenVideoM
 
           <button
             onClick={toggleMute}
-            className="absolute bottom-20 right-4 z-20 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            className="absolute bottom-44 md:bottom-40 right-4 z-20 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
           >
             {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
           </button>
@@ -397,47 +397,51 @@ const FullscreenVideoModal = ({ isOpen, onClose, testimonial }: FullscreenVideoM
             onTimeUpdate={handleTimeUpdate}
           />
 
-          {/* Progress bar */}
-          <div
-            ref={progressRef}
-            className={`absolute bottom-[88px] left-4 right-4 z-20 cursor-pointer transition-all duration-200 rounded-full overflow-hidden ${
-              isProgressExpanded ? "h-3 md:h-2" : "h-1.5"
-            }`}
-            style={{ touchAction: "none" }}
-            onClick={handleProgressClick}
-            onMouseDown={handleMouseDown}
-            onTouchStart={handleTouchStart}
-            onMouseEnter={() => setIsHoveringProgress(true)}
-            onMouseLeave={() => !isDragging && setIsHoveringProgress(false)}
-          >
-            {/* Background track */}
-            <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
-            
-            {/* Filled progress */}
-            <div
-              className="absolute left-0 top-0 bottom-0 bg-primary transition-all duration-75 ease-linear"
-              style={{ width: `${progress}%` }}
-            >
-              {/* Playhead dot */}
-              <div 
-                className={`absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_10px_rgba(37,99,235,0.9)] transition-all duration-200 ${
-                  isProgressExpanded 
-                    ? "w-4 h-4 -right-2 md:w-3 md:h-3 md:-right-1.5" 
-                    : "w-2.5 h-2.5 -right-1"
-                }`} 
-              />
+          {/* Bottom overlay with title and progress bar */}
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
+            {/* Text content */}
+            <div className="px-4 md:px-6 pt-8 pb-3">
+              <p className="text-base md:text-xl font-medium text-white mb-1 md:mb-2 line-clamp-2">
+                "{testimonial.quote}"
+              </p>
+              <p className="text-white font-semibold text-sm md:text-base">{testimonial.author}</p>
+              <p className="text-white/70 text-xs md:text-sm">{testimonial.role}</p>
             </div>
 
-            {/* Larger touch target area for mobile */}
-            <div className="absolute -top-4 left-0 right-0 h-8 md:hidden" />
-          </div>
+            {/* Progress bar - positioned below the text */}
+            <div
+              ref={progressRef}
+              className={`relative mx-4 md:mx-6 mb-4 z-20 cursor-pointer transition-all duration-200 rounded-full overflow-hidden ${
+                isProgressExpanded ? "h-3 md:h-2" : "h-1.5"
+              }`}
+              style={{ touchAction: "none" }}
+              onClick={handleProgressClick}
+              onMouseDown={handleMouseDown}
+              onTouchStart={handleTouchStart}
+              onMouseEnter={() => setIsHoveringProgress(true)}
+              onMouseLeave={() => !isDragging && setIsHoveringProgress(false)}
+            >
+              {/* Background track */}
+              <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
+              
+              {/* Filled progress */}
+              <div
+                className="absolute left-0 top-0 bottom-0 bg-primary transition-all duration-75 ease-linear"
+                style={{ width: `${progress}%` }}
+              >
+                {/* Playhead dot */}
+                <div 
+                  className={`absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_10px_rgba(37,99,235,0.9)] transition-all duration-200 ${
+                    isProgressExpanded 
+                      ? "w-4 h-4 -right-2 md:w-3 md:h-3 md:-right-1.5" 
+                      : "w-2.5 h-2.5 -right-1"
+                  }`} 
+                />
+              </div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent pointer-events-none">
-            <p className="text-lg md:text-xl font-medium text-white mb-2">
-              "{testimonial.quote}"
-            </p>
-            <p className="text-white font-semibold">{testimonial.author}</p>
-            <p className="text-white/70 text-sm">{testimonial.role}</p>
+              {/* Larger touch target area for mobile */}
+              <div className="absolute -top-4 left-0 right-0 h-8 md:hidden" />
+            </div>
           </div>
         </div>
       </DialogContent>
