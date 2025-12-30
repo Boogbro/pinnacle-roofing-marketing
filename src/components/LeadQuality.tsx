@@ -327,7 +327,7 @@ const LeadQuality = () => {
                 "inline-flex items-center justify-center w-14 h-14 rounded-xl border mb-4 transition-colors duration-300",
                 backgroundState === 'dark' 
                   ? "bg-primary/10 border-primary/20 group-hover:bg-primary/20" 
-                  : "bg-[hsl(var(--foreground-light)/0.08)] border-[hsl(var(--foreground-light)/0.15)] group-hover:bg-[hsl(var(--foreground-light)/0.12)]"
+                  : "bg-[hsl(var(--background-light))] border-[hsl(var(--foreground-light)/0.15)] group-hover:bg-[hsl(var(--background-light))]"
               )}>
               <fact.icon className={cn(
                   "w-6 h-6 transition-colors duration-700",
