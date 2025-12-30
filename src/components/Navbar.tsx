@@ -89,20 +89,7 @@ const Navbar = ({ onBookClick }: NavbarProps) => {
           {/* Logo/Title */}
           <a href="/" className="flex items-center space-x-2 group" onClick={handleLogoClick}>
             <h1 className="text-xl md:text-2xl font-black">
-              <span className="gradient-text">
-                <span className="relative inline-block">
-                  Pinnacle
-                  <span 
-                    className="absolute left-0 right-0 -bottom-0.5 h-[3px] opacity-30"
-                    style={{
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'%3E%3Cpath d='M0 2 Q5 0 10 2 T20 2' stroke='%23FF6A00' stroke-width='1.5' fill='none' stroke-dasharray='3 2' stroke-linecap='round'/%3E%3C/svg%3E")`,
-                      backgroundRepeat: 'repeat-x',
-                      backgroundSize: '20px 4px',
-                    }}
-                  />
-                </span>
-                {" "}Roofing Marketing
-              </span>
+              <span className="gradient-text">Pinnacle Roofing Marketing</span>
             </h1>
           </a>
 
