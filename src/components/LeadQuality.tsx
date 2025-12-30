@@ -162,14 +162,8 @@ const LeadQuality = () => {
                     </div>
 
                     <div className="flex-1 w-full max-w-md lg:max-w-lg aspect-square relative group">
-                      {/* Glow effect behind lottie */}
-                      <div className="absolute inset-0 rounded-2xl bg-primary/20 blur-3xl opacity-40" />
-                      {/* Inner card for lottie */}
-                      <div className={cn(
-                        "relative h-full w-full flex items-center justify-center rounded-2xl border border-white/10 overflow-hidden",
-                        "bg-gradient-to-br from-background/80 via-card/60 to-background/40"
-                      )}>
-                        <div className={cn("absolute inset-0 bg-gradient-to-br opacity-30", feature.gradient)} />
+                      <div className={cn("absolute inset-0 rounded-2xl bg-gradient-to-br opacity-50", feature.gradient)} />
+                      <div className="relative h-full w-full flex items-center justify-center">
                         <LottiePlayer 
                           animationData={feature.lottie}
                           isActive={isActive}
