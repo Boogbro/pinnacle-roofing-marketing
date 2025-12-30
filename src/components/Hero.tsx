@@ -71,6 +71,16 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
           >
             <Button
               size="lg"
+              variant="outline"
+              className="h-11 px-8 text-sm border-primary/50 text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-105 font-bold uppercase tracking-wide"
+              onClick={() => {
+                document.getElementById('roi-calculator')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Calculate Your ROI
+            </Button>
+            <Button
+              size="lg"
               className="h-11 px-8 text-sm bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_30px_-10px_rgba(234,179,8,0.6)] transition-all duration-300 hover:scale-105 font-bold uppercase tracking-wide group"
               onClick={onBookClick}
               data-testid="button-book-capacity-check"

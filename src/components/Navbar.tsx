@@ -10,7 +10,6 @@ const navItems = [
   { href: "/testimonials", label: "Results" },
   { href: "#system-process", label: "Process" },
   { href: "#infrastructure", label: "Infrastructure" },
-  { href: "#roi-calculator", label: "ROI" },
   { href: "#faq", label: "FAQ" },
 ];
 
