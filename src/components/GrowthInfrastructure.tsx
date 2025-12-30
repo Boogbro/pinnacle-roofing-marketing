@@ -153,6 +153,64 @@ const GrowthInfrastructure = () => {
           })}
         </div>
       </div>
+
+      {/* Paper mesh transition to next section (dark) - flipped upside down */}
+      <div className="absolute -bottom-8 left-0 right-0 h-56 pointer-events-none z-20">
+        <svg
+          className="absolute bottom-0 left-0 w-full h-full"
+          viewBox="0 0 1440 224"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          {/* Crumpled paper texture filters */}
+          <defs>
+            <filter id="crumpleTextureInv" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.015 0.08" numOctaves="6" result="noise" seed="3" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <filter id="crumpleTextureInv2" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.02 0.1" numOctaves="5" result="noise" seed="7" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <filter id="crumpleTextureInv3" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.025 0.12" numOctaves="5" result="noise" seed="11" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+          </defs>
+          
+          {/* Dark background paper edges - transitioning to dark */}
+          <path
+            filter="url(#crumpleTextureInv)"
+            d="M0,130 Q180,115 360,128 T720,118 T1080,130 T1440,122 L1440,224 L0,224 Z"
+            fill="hsl(var(--background))"
+            fillOpacity="0.5"
+          />
+          <path
+            filter="url(#crumpleTextureInv2)"
+            d="M0,145 Q240,132 480,148 T960,135 T1440,146 L1440,224 L0,224 Z"
+            fill="hsl(var(--background))"
+            fillOpacity="0.7"
+          />
+          <path
+            filter="url(#crumpleTextureInv3)"
+            d="M0,158 Q300,148 600,162 T1200,152 T1440,160 L1440,224 L0,224 Z"
+            fill="hsl(var(--background))"
+            fillOpacity="0.85"
+          />
+          <path
+            filter="url(#crumpleTextureInv)"
+            d="M0,172 Q360,165 720,175 T1440,168 L1440,224 L0,224 Z"
+            fill="hsl(var(--background))"
+          />
+          
+          {/* Crumpled fiber strands */}
+          <g opacity="0.12">
+            <path filter="url(#crumpleTextureInv2)" d="M0,140 Q480,155 960,138 T1440,148" stroke="hsl(var(--background))" strokeWidth="3" fill="none" />
+            <path filter="url(#crumpleTextureInv3)" d="M0,152 Q360,145 720,155 T1440,142" stroke="hsl(var(--background))" strokeWidth="2" fill="none" />
+          </g>
+        </svg>
+      </div>
     </section>
   );
 };
