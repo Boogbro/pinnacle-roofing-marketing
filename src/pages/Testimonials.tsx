@@ -14,6 +14,7 @@ const testimonials = [
     author: "Matt Farmer",
     role: "Far More Roofing and Construction",
     fullscreenPreferred: false,
+    startWithSound: true,
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ const testimonials = [
     author: "Gary",
     role: "Fortress Roofing",
     fullscreenPreferred: false,
+    startWithSound: true,
   },
   {
     id: 3,
@@ -30,6 +32,7 @@ const testimonials = [
     author: "Kolbie Schilson",
     role: "Eminent Roofing Solutions",
     fullscreenPreferred: true,
+    startWithSound: false,
   },
 ];
 
@@ -42,7 +45,7 @@ interface VideoCardProps {
 const VideoCard = ({ testimonial, index, onFullscreenRequest }: VideoCardProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(!testimonial.startWithSound);
 
   const togglePlay = () => {
     if (testimonial.fullscreenPreferred && onFullscreenRequest) {
