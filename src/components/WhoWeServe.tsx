@@ -71,8 +71,7 @@ const WhoWeServe = ({ onBookClick }: WhoWeServeProps) => {
         <div className="text-center">
           <Button
             size="lg"
-            variant="outline"
-            className="group border-[hsl(var(--foreground-light)/0.2)] text-[hsl(var(--foreground-light))] hover:bg-[hsl(var(--foreground-light)/0.1)] hover:border-[hsl(var(--foreground-light)/0.3)]"
+            className="group bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
             onClick={onBookClick}
             data-testid="button-who-we-serve-cta"
           >
