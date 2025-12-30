@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import garyTestimonialVideo from "@/assets/GaryTestimonial_1767056632278.mp4";
-import mattFarmerVideo from "@/assets/MattFarmer_1767057381851.mp4";
+import mattFarmerVideo from "@/assets/MattFarmer.mp4";
+import kolbieVideo from "@/assets/Colby_Eminent_Roofing_Solutions_Testimonial_-_Made_with_Clipch_1767058069159.mp4";
 
 // ----------------------------------------------------------------------
 // 1. PASTE YOUR EXTRACTED MEDIA LINKS BELOW
@@ -40,9 +41,8 @@ const testimonials = [
   },
   {
     id: 4,
-    type: "image",
-    // REPLACE with an image URL you extracted
-    url: "https://placehold.co/600x400/1e293b/white?text=Client+Result+Image+2",
+    type: "video",
+    url: kolbieVideo,
     title: "21 Roofs Closed in 60 Days",
     author: "Kolbie Schilson, Eminent Roofing Solutions",
     result: "21 Roofs Closed",
