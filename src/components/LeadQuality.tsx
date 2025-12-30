@@ -6,7 +6,8 @@ import { cn } from "@/lib/utils";
 
 // Import your uploaded Lottie JSON files
 import houseAnim from "@/assets/animations/house.json";
-import screeningAnim from "@/assets/animations/screening.json";
+import screeningForwardAnim from "@/assets/animations/screening-forward.json";
+import screeningReverseAnim from "@/assets/animations/screening-reverse.json";
 import mapPinAnim from "@/assets/animations/map-pin.json";
 
 const features = [
@@ -27,7 +28,8 @@ const features = [
     fullLabel: "SCREENED",
     description: "Every lead is screened for design, permit, or financing readiness. We ask the homeowner the tough questions you'd ask yourself, ensuring start windows are within 30 to 60 days.",
     icon: Zap,
-    lottie: screeningAnim,
+    lottie: screeningForwardAnim,
+    lottieReverse: screeningReverseAnim,
     gradient: "from-amber-500/10 to-transparent",
   },
   {
@@ -42,7 +44,7 @@ const features = [
   },
 ];
 
-// Helper component to properly use lottieRef
+// Helper component for standard lottie animations
 const LottiePlayer = ({ 
   animationData, 
   isActive 
@@ -67,6 +69,44 @@ const LottiePlayer = ({
       lottieRef={lottieRef}
       animationData={animationData} 
       loop={true} 
+      className="w-full h-full p-8 md:p-12"
+    />
+  );
+};
+
+// Helper component for forward-reverse seamless looping
+const LottieForwardReverse = ({ 
+  forwardData, 
+  reverseData, 
+  isActive 
+}: { 
+  forwardData: unknown; 
+  reverseData: unknown; 
+  isActive: boolean;
+}) => {
+  const [playingForward, setPlayingForward] = useState(true);
+  const lottieRef = useRef<LottieRefCurrentProps>(null);
+
+  useEffect(() => {
+    if (lottieRef.current) {
+      if (isActive) {
+        lottieRef.current.goToAndPlay(0);
+      } else {
+        lottieRef.current.pause();
+      }
+    }
+  }, [isActive, playingForward]);
+
+  const handleComplete = () => {
+    setPlayingForward(prev => !prev);
+  };
+
+  return (
+    <Lottie 
+      lottieRef={lottieRef}
+      animationData={playingForward ? forwardData : reverseData} 
+      loop={false}
+      onComplete={handleComplete}
       className="w-full h-full p-8 md:p-12"
     />
   );
@@ -164,10 +204,18 @@ const LeadQuality = () => {
                     <div className="flex-1 w-full max-w-md lg:max-w-lg aspect-square relative group">
                       <div className={cn("absolute inset-0 rounded-2xl bg-gradient-to-br opacity-50", feature.gradient)} />
                       <div className="relative h-full w-full flex items-center justify-center">
-                        <LottiePlayer 
-                          animationData={feature.lottie}
-                          isActive={isActive}
-                        />
+                        {feature.lottieReverse ? (
+                          <LottieForwardReverse 
+                            forwardData={feature.lottie}
+                            reverseData={feature.lottieReverse}
+                            isActive={isActive}
+                          />
+                        ) : (
+                          <LottiePlayer 
+                            animationData={feature.lottie}
+                            isActive={isActive}
+                          />
+                        )}
                       </div>
                     </div>
                   </div>
