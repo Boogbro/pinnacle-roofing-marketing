@@ -4,6 +4,7 @@ import LogoCarousel from "@/components/LogoCarousel";
 import LeadQuality from "@/components/LeadQuality";
 import WhoWeServe from "@/components/WhoWeServe";
 import SystemProcess from "@/components/SystemProcess";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import ROICalculator from "@/components/ROICalculator";
 import GrowthInfrastructure from "@/components/GrowthInfrastructure";
 import FAQ from "@/components/FAQ";
@@ -31,6 +32,7 @@ const Index = () => {
       <WhoWeServe onBookClick={handleBookClick} />
       <LeadQuality />
       <GrowthInfrastructure />
+      <TestimonialsSection />
       <ROICalculator />
       <FAQ onBookClick={handleBookClick} />
       <FinalCTA onBookClick={handleBookClick} />
