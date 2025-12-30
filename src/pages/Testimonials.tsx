@@ -6,43 +6,31 @@ import VideoPlayer from "@/components/VideoPlayer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import garyTestimonialVideo from "@/assets/GaryTestimonial_1767056632278.mp4";
-import mattFarmerVideo from "@/assets/MattFarmer.mp4";
-import kolbieVideo from "@/assets/Colby Eminent Roofing Solutions Testimonial - Made with Clipchamp_1749046850597.mp4";
 
 // ----------------------------------------------------------------------
-// 1. PASTE YOUR EXTRACTED MEDIA LINKS BELOW
+// 1. PASTE YOUR VIDEO LINKS BELOW (replace the placeholder URLs)
 // ----------------------------------------------------------------------
 const testimonials = [
   {
     id: 1,
     type: "video",
-    // This is the video found in your Hero.tsx
-    url: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691eb27388e1e669aaa7d2c7.mp4", 
-    title: "Scaling to $5M+ Revenue",
-    author: "Elite Roofing Co.",
-    result: "+340% Growth",
-  },
-  {
-    id: 2,
-    type: "video",
-    url: mattFarmerVideo,
+    url: "https://example.com/your-video-1.mp4", // TODO: Replace with actual video URL
     title: "2+ Roof Replacement Appointments Daily",
     author: "Matt Farmer, Far More Roofing and Construction",
     result: "Hiring New Salesman",
   },
   {
-    id: 3,
+    id: 2,
     type: "video",
-    url: garyTestimonialVideo, 
+    url: "https://example.com/your-video-2.mp4", // TODO: Replace with actual video URL
     title: "3 Jobs Closed in Week 1",
     author: "Gary, Fortress Roofing",
     result: "3 Jobs Closed",
   },
   {
-    id: 4,
+    id: 3,
     type: "video",
-    url: kolbieVideo,
+    url: "https://example.com/your-video-3.mp4", // TODO: Replace with actual video URL
     title: "21 Roofs Closed in 60 Days",
     author: "Kolbie Schilson, Eminent Roofing Solutions",
     result: "21 Roofs Closed",
