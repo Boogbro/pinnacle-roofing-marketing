@@ -457,7 +457,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section id="results" className="pt-32 pb-24 px-6 relative overflow-hidden">
+    <section id="results" className="py-24 px-6 relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background pointer-events-none" />
       
