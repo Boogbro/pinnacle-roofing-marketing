@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import garyTestimonialVideo from "@/assets/GaryTestimonial_1767056632278.mp4";
+import mattFarmerVideo from "@/assets/MattFarmer_1767057381851.mp4";
 
 // ----------------------------------------------------------------------
 // 1. PASTE YOUR EXTRACTED MEDIA LINKS BELOW
@@ -24,7 +25,7 @@ const testimonials = [
   {
     id: 2,
     type: "video",
-    url: "https://pinnacleroofingmarketing.com/wp-content/uploads/2025/06/Matt-Farmer-Testimonial-Final.mp4",
+    url: mattFarmerVideo,
     title: "2+ Roof Replacement Appointments Daily",
     author: "Matt Farmer, Far More Roofing and Construction",
     result: "Hiring New Salesman",
