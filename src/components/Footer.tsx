@@ -18,7 +18,7 @@ const Footer = ({ onBookClick }: FooterProps) => {
   ];
 
   return (
-    <footer className="bg-secondary/20 pt-16 pb-6 relative z-10 border-t border-border/50">
+    <footer className="bg-secondary/20 pt-28 pb-6 relative z-10 border-t border-border/50">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           {/* Column 1: Brand Info */}
