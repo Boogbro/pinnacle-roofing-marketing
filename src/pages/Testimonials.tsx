@@ -8,7 +8,7 @@ import { ArrowRight, Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import garyTestimonialVideo from "@/assets/GaryTestimonial_1767056632278.mp4";
 import mattFarmerVideo from "@/assets/MattFarmer.mp4";
-import kolbieVideo from "@/assets/Colby_Eminent_Roofing_Solutions_Testimonial_-_Made_with_Clipch_1767058069159.mp4";
+import kolbieVideo from "@/assets/Colby Eminent Roofing Solutions Testimonial - Made with Clipchamp_1749046850597.mp4";
 
 // ----------------------------------------------------------------------
 // 1. PASTE YOUR EXTRACTED MEDIA LINKS BELOW

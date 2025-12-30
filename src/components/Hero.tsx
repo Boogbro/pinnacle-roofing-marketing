@@ -105,7 +105,7 @@ const Hero = ({ children, onBookClick }: HeroProps) => {
           {/* Player Container */}
           <div className="relative rounded-xl border border-white/10 bg-slate-950 shadow-2xl overflow-hidden ring-1 ring-white/10 z-20">
             <VideoPlayer
-              videoUrl="https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691eb27388e1e669aaa7d2c7.mp4"
+              videoUrl="https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/695310616c45652a47b1d1fd.mp4"
               className="w-full aspect-video"
             />
           </div>
