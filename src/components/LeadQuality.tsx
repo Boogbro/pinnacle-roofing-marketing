@@ -176,9 +176,9 @@ const LeadQuality = () => {
         {/* Continuous vertical line through sticky section */}
         <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-primary/30 pointer-events-none z-0" />
 
-        <div className="sticky top-10 h-[calc(100vh-40px)] w-full flex items-start justify-center overflow-hidden px-4 md:px-6">
+        <div className="sticky top-24 h-[calc(100vh-96px)] w-full flex items-start justify-center overflow-hidden px-4 md:px-6">
           {/* Full-Screen Card Container */}
-          <div className="relative w-full max-w-[1400px] h-[calc(100vh-60px)] border border-primary/20 rounded-3xl bg-card/80 backdrop-blur-md overflow-hidden">
+          <div className="relative w-full max-w-[1400px] h-[calc(100vh-120px)] border border-primary/20 rounded-3xl bg-card/80 backdrop-blur-md overflow-hidden">
             {/* Top border glow where line enters */}
             <div className="absolute -top-px left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
 
