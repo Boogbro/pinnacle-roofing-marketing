@@ -160,9 +160,9 @@ const LeadQuality = () => {
 
   return (
     <section id="quality" className="relative bg-background">
-      {/* Header Section with Gradient Line Start */}
-      <div className="container max-w-7xl mx-auto px-6 pt-24 md:pt-32 pb-8 relative">
-        {/* Vertical Gradient Line - Starting Point */}
+      {/* Header Section */}
+      <div className="container max-w-7xl mx-auto px-6 pt-24 md:pt-32 pb-12 md:pb-16 relative">
+        {/* Vertical Gradient Line - Above Header */}
         <div className="absolute left-1/2 -translate-x-1/2 top-0 w-px h-24 md:h-32 bg-gradient-to-b from-transparent via-primary/50 to-primary" />
         
         <div className="text-center max-w-4xl mx-auto relative">
@@ -174,21 +174,21 @@ const LeadQuality = () => {
             <span className="gradient-text">Truly Prequalified Appointments</span>
           </h2>
         </div>
-      </div>
-
-      {/* Gradient Line Connecting to Card */}
-      <div className="relative h-16 md:h-24">
-        <div className="absolute left-1/2 -translate-x-1/2 top-0 w-px h-full bg-primary/60" />
+        
+        {/* Gradient Line - From Header to Card */}
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-px h-12 md:h-16 bg-primary/60" />
       </div>
 
       {/* Sticky Scroll Container */}
       <div ref={containerRef} className="relative h-[300vh] md:h-[400vh]">
-        <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-4 md:px-6">
+        {/* Continuous vertical line through sticky section */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-primary/30 pointer-events-none z-0" />
+        
+        <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-4 md:px-6 py-10">
           {/* Full-Screen Card Container */}
-          <div className="relative w-full max-w-[1400px] h-[calc(100vh-80px)] border border-primary/20 rounded-3xl bg-card/50 backdrop-blur-md overflow-hidden">
-            {/* Corner Gradient Line Decoration */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-8 bg-primary/60" />
-            <div className="absolute -top-px left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+          <div className="relative w-full max-w-[1400px] h-[calc(100vh-80px)] border border-primary/20 rounded-3xl bg-card/80 backdrop-blur-md overflow-hidden">
+            {/* Top border glow where line enters */}
+            <div className="absolute -top-px left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
             
             {/* Inner glow effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
@@ -263,23 +263,22 @@ const LeadQuality = () => {
               </div>
             </div>
 
-            {/* Bottom gradient line decoration */}
-            <div className="absolute -bottom-px left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+            {/* Bottom border glow where line exits */}
+            <div className="absolute -bottom-px left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
           </div>
         </div>
       </div>
 
-      {/* Gradient Line Connecting to Facts */}
-      <div className="relative h-24 md:h-32">
+      {/* Gradient Line - From Card to Facts */}
+      <div className="relative h-20 md:h-28">
         <div className="absolute left-1/2 -translate-x-1/2 top-0 w-px h-full bg-primary/60" />
       </div>
 
       {/* Three Facts Section */}
       <div className="container max-w-7xl mx-auto px-6 pb-24 md:pb-32 relative">
-        {/* Horizontal gradient line above facts */}
+        {/* Horizontal gradient line that spreads from center */}
         <div className="relative mb-12 md:mb-16">
-          <div className="absolute left-1/2 -translate-x-1/2 -top-8 w-px h-8 bg-primary/60" />
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent" />
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
         </div>
 
         {/* Facts Grid */}
