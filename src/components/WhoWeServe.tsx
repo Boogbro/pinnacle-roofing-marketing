@@ -22,17 +22,17 @@ const services = [
 
 const WhoWeServe = ({ onBookClick }: WhoWeServeProps) => {
   return (
-    <section id="who-we-serve" className="py-20 px-6 relative overflow-hidden bg-background">
+    <section id="who-we-serve" className="py-20 px-6 relative overflow-hidden bg-[hsl(var(--background-light))]">
       {/* Ambient Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container relative z-10 max-w-5xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-[hsl(var(--foreground-light))]">
             Who We <span className="gradient-text">Serve</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-[hsl(var(--foreground-light)/0.7)] max-w-2xl mx-auto">
             If you can staff the work, we can fill the calendar.
           </p>
         </div>
@@ -44,7 +44,7 @@ const WhoWeServe = ({ onBookClick }: WhoWeServeProps) => {
             return (
               <div
                 key={index}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card/30 backdrop-blur-sm p-8 transition-all duration-500 hover:border-white/20 hover:bg-card/40"
+                className="group relative overflow-hidden rounded-2xl border border-[hsl(var(--foreground-light)/0.1)] bg-[hsl(var(--foreground-light)/0.03)] backdrop-blur-sm p-8 transition-all duration-500 hover:border-[hsl(var(--foreground-light)/0.2)] hover:bg-[hsl(var(--foreground-light)/0.05)]"
               >
                 {/* Gradient overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
@@ -54,10 +54,10 @@ const WhoWeServe = ({ onBookClick }: WhoWeServeProps) => {
                     <Icon className="w-7 h-7 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-2xl font-semibold mb-2 text-[hsl(var(--foreground-light))] group-hover:text-primary transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-muted-foreground text-base leading-relaxed">
+                    <p className="text-[hsl(var(--foreground-light)/0.6)] text-base leading-relaxed">
                       {service.description}
                     </p>
                   </div>
@@ -72,7 +72,7 @@ const WhoWeServe = ({ onBookClick }: WhoWeServeProps) => {
           <Button
             size="lg"
             variant="outline"
-            className="group"
+            className="group border-[hsl(var(--foreground-light)/0.2)] text-[hsl(var(--foreground-light))] hover:bg-[hsl(var(--foreground-light)/0.1)] hover:border-[hsl(var(--foreground-light)/0.3)]"
             onClick={onBookClick}
             data-testid="button-who-we-serve-cta"
           >

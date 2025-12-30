@@ -58,6 +58,10 @@ All colors MUST be HSL.
     --shadow-card: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
 
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Light section background */
+    --background-light: 40 20% 96%; /* Warm off-white */
+    --foreground-light: 222 47% 11%; /* Dark text for light sections */
   }
 }
 
