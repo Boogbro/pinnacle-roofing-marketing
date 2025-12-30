@@ -105,8 +105,16 @@ const LeadQuality = () => {
     <section ref={containerRef} id="quality" className="relative bg-background h-[300vh] md:h-[400vh]">
       <div className="sticky top-0 h-screen w-full flex flex-col overflow-hidden">
         <div className="container max-w-7xl mx-auto px-6 relative z-10 pt-8 md:pt-12 flex flex-col h-full">
+          {/* Section Header */}
+          <div className="max-w-4xl mb-6 md:mb-8">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              Beyond the Lead: <br />
+              <span className="gradient-text">Truly Prequalified Appointments</span>
+            </h2>
+          </div>
+
           {/* Tab Navigation */}
-          <div className="flex items-center gap-1 mb-6 md:mb-8">
+          <div className="flex items-center gap-1 mb-8 md:mb-10">
             {features.map((feature, index) => {
               const isActive = index === activeIndex;
               return (
@@ -127,14 +135,6 @@ const LeadQuality = () => {
                 </button>
               );
             })}
-          </div>
-
-          {/* Section Header */}
-          <div className="max-w-4xl mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
-              Beyond the Lead: <br />
-              <span className="gradient-text">Truly Prequalified Appointments</span>
-            </h2>
           </div>
 
           {/* Feature Content */}
