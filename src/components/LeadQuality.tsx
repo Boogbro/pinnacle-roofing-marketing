@@ -303,22 +303,45 @@ const LeadQuality = () => {
       <div className="container max-w-7xl mx-auto px-6 pb-24 md:pb-32 relative">
         {/* Horizontal gradient line that spreads from center */}
         <div className="relative mb-12 md:mb-16">
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+          <div className={cn(
+            "h-px w-full bg-gradient-to-r from-transparent to-transparent transition-colors duration-700",
+            backgroundState === 'dark' ? "via-primary/40" : "via-[hsl(var(--foreground-light)/0.2)]"
+          )} />
         </div>
 
         {/* Facts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 relative">
           {/* Vertical dividers between facts */}
-          <div className="hidden md:block absolute left-1/3 top-0 bottom-0 w-px bg-border/50" />
-          <div className="hidden md:block absolute left-2/3 top-0 bottom-0 w-px bg-border/50" />
+          <div className={cn(
+            "hidden md:block absolute left-1/3 top-0 bottom-0 w-px transition-colors duration-700",
+            backgroundState === 'dark' ? "bg-border/50" : "bg-[hsl(var(--foreground-light)/0.15)]"
+          )} />
+          <div className={cn(
+            "hidden md:block absolute left-2/3 top-0 bottom-0 w-px transition-colors duration-700",
+            backgroundState === 'dark' ? "bg-border/50" : "bg-[hsl(var(--foreground-light)/0.15)]"
+          )} />
 
           {facts.map((fact, index) => (
             <div key={index} className="text-center group">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 mb-4 group-hover:bg-primary/20 transition-colors duration-300">
-                <fact.icon className="w-6 h-6 text-primary" />
+              <div className={cn(
+                "inline-flex items-center justify-center w-14 h-14 rounded-xl border mb-4 transition-colors duration-300",
+                backgroundState === 'dark' 
+                  ? "bg-primary/10 border-primary/20 group-hover:bg-primary/20" 
+                  : "bg-[hsl(var(--foreground-light)/0.08)] border-[hsl(var(--foreground-light)/0.15)] group-hover:bg-[hsl(var(--foreground-light)/0.12)]"
+              )}>
+                <fact.icon className={cn(
+                  "w-6 h-6 transition-colors duration-700",
+                  backgroundState === 'dark' ? "text-primary" : "text-[hsl(var(--foreground-light))]"
+                )} />
               </div>
-              <h4 className="text-lg md:text-xl font-bold mb-2">{fact.title}</h4>
-              <p className="text-sm md:text-base text-muted-foreground">{fact.description}</p>
+              <h4 className={cn(
+                "text-lg md:text-xl font-bold mb-2 transition-colors duration-700",
+                backgroundState === 'dark' ? "text-foreground" : "text-[hsl(var(--foreground-light))]"
+              )}>{fact.title}</h4>
+              <p className={cn(
+                "text-sm md:text-base transition-colors duration-700",
+                backgroundState === 'dark' ? "text-muted-foreground" : "text-[hsl(var(--foreground-light)/0.7)]"
+              )}>{fact.description}</p>
             </div>
           ))}
         </div>
