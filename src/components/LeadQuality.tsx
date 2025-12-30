@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, RefObject } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { LottieRefCurrentProps } from "lottie-react";
 import Lottie from "lottie-react";
 import { Shield, Target, Zap } from "lucide-react";
@@ -13,6 +13,8 @@ const features = [
   {
     title: "Target High-Value Projects",
     headline: "High-End Scope of Work",
+    shortLabel: "A",
+    fullLabel: "HIGH-VALUE",
     description: "We don't just find homeowners; we find investors. We specialize in securing appointments for full kitchen remodels, primary bath gut renovations, and full roof replacements.",
     icon: Target,
     lottie: houseAnim,
@@ -21,6 +23,8 @@ const features = [
   {
     title: "Rigorously Vetted Readiness",
     headline: "The 5-Point Screening Process",
+    shortLabel: "B",
+    fullLabel: "SCREENED",
     description: "Every lead is screened for design, permit, or financing readiness. We ask the homeowner the tough questions you'd ask yourself, ensuring start windows are within 30 to 60 days.",
     icon: Zap,
     lottie: screeningAnim,
@@ -29,6 +33,8 @@ const features = [
   {
     title: "Absolute Exclusivity",
     headline: "One Partner. One Area.",
+    shortLabel: "C",
+    fullLabel: "EXCLUSIVE",
     description: "No shared leads. No bidding wars. We operate with strict qualifying criteria and only allow one partner per service area. When we deliver a lead, it is yours and yours alone.",
     icon: Shield,
     lottie: mapPinAnim,
@@ -83,18 +89,56 @@ const LeadQuality = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleTabClick = (index: number) => {
+    setActiveIndex(index);
+    // Scroll to the appropriate position in the section
+    if (containerRef.current) {
+      const { top, height } = containerRef.current.getBoundingClientRect();
+      const sectionTop = window.scrollY + top;
+      const scrollHeight = height - window.innerHeight;
+      const targetScroll = sectionTop + (scrollHeight * index) / features.length + 100;
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section ref={containerRef} id="quality" className="relative bg-background h-[300vh] md:h-[400vh]">
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
-        <div className="container max-w-7xl mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mb-12 md:mb-20">
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4">
+      <div className="sticky top-0 h-screen w-full flex flex-col overflow-hidden">
+        <div className="container max-w-7xl mx-auto px-6 relative z-10 pt-8 md:pt-12 flex flex-col h-full">
+          {/* Tab Navigation */}
+          <div className="flex items-center gap-1 mb-6 md:mb-8">
+            {features.map((feature, index) => {
+              const isActive = index === activeIndex;
+              return (
+                <button
+                  key={index}
+                  onClick={() => handleTabClick(index)}
+                  className={cn(
+                    "flex items-center gap-2 px-3 py-2 rounded-lg border-2 transition-all duration-300 font-semibold text-sm",
+                    isActive 
+                      ? "bg-primary border-primary text-primary-foreground" 
+                      : "border-primary/50 text-primary hover:border-primary hover:bg-primary/10"
+                  )}
+                >
+                  <span>{feature.shortLabel}</span>
+                  {isActive && (
+                    <span className="hidden sm:inline">{feature.fullLabel}</span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Section Header */}
+          <div className="max-w-4xl mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
               Beyond the Lead: <br />
               <span className="gradient-text">Truly Prequalified Appointments</span>
             </h2>
           </div>
 
-          <div className="relative h-[500px] md:h-[600px]">
+          {/* Feature Content */}
+          <div className="relative flex-1 min-h-0">
             {features.map((feature, index) => {
               const isActive = index === activeIndex;
 
@@ -102,20 +146,20 @@ const LeadQuality = () => {
                 <div
                   key={index}
                   className={cn(
-                    "absolute inset-0 flex flex-col md:flex-row gap-12 items-center transition-all duration-700 ease-in-out",
+                    "absolute inset-0 flex flex-col md:flex-row gap-8 md:gap-12 items-center transition-all duration-700 ease-in-out",
                     isActive ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95 pointer-events-none"
                   )}
                 >
-                  <div className="flex-1 space-y-6">
+                  <div className="flex-1 space-y-4 md:space-y-6">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-sm font-medium">
                       <feature.icon className="w-4 h-4" />
                       {feature.headline}
                     </div>
-                    <h3 className="text-3xl md:text-5xl font-bold leading-tight">{feature.title}</h3>
-                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{feature.description}</p>
+                    <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">{feature.title}</h3>
+                    <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">{feature.description}</p>
                   </div>
 
-                  <div className="flex-1 w-full max-w-lg aspect-square relative group">
+                  <div className="flex-1 w-full max-w-md lg:max-w-lg aspect-square relative group">
                     <div className={cn("absolute inset-0 rounded-3xl bg-gradient-to-br opacity-50", feature.gradient)} />
                     <div className="relative h-full w-full flex items-center justify-center border border-white/10 rounded-3xl bg-card/30 backdrop-blur-md overflow-hidden">
                       <LottiePlayer 
