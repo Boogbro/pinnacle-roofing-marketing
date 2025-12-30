@@ -6,7 +6,7 @@ import VideoPlayer from "@/components/VideoPlayer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import garyTestimonialVideo from "@/assets/Gary_Testimonial_Converted_1767052115065.mp4";
+import garyTestimonialVideo from "@/assets/GaryTestimonial_1767056632278.mp4";
 
 // ----------------------------------------------------------------------
 // 1. PASTE YOUR EXTRACTED MEDIA LINKS BELOW
