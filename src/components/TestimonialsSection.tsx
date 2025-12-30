@@ -42,6 +42,7 @@ const VideoCard = ({ testimonial, index, onFullscreenRequest }: VideoCardProps) 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(!testimonial.startWithSound);
+  const [progress, setProgress] = useState(0);
 
   const togglePlay = () => {
     if (testimonial.fullscreenPreferred && onFullscreenRequest) {
@@ -67,6 +68,25 @@ const VideoCard = ({ testimonial, index, onFullscreenRequest }: VideoCardProps) 
     }
   };
 
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      const { currentTime, duration } = videoRef.current;
+      if (duration > 0) {
+        setProgress((currentTime / duration) * 100);
+      }
+    }
+  };
+
+  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const percentage = clickX / rect.width;
+      videoRef.current.currentTime = percentage * videoRef.current.duration;
+    }
+  };
+
   return (
     <div
       className="relative group cursor-pointer animate-fade-in-up"
@@ -82,7 +102,24 @@ const VideoCard = ({ testimonial, index, onFullscreenRequest }: VideoCardProps) 
           playsInline
           loop
           preload="metadata"
+          onTimeUpdate={handleTimeUpdate}
         />
+
+        {/* Progress bar - only visible when playing */}
+        <div
+          className={`absolute bottom-0 left-0 right-0 h-1 bg-white/20 z-20 cursor-pointer transition-opacity duration-300 ${
+            isPlaying ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={handleProgressClick}
+        >
+          <div
+            className="h-full bg-primary transition-all duration-100 ease-linear relative"
+            style={{ width: `${progress}%` }}
+          >
+            {/* Glow effect on progress head */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(37,99,235,0.8)]" />
+          </div>
+        </div>
 
         {/* Play/Pause overlay - hidden when playing for Matt & Gary (non-fullscreen videos) */}
         {(!isPlaying || testimonial.fullscreenPreferred) && (
