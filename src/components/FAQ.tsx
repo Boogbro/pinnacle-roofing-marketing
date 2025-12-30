@@ -55,7 +55,7 @@ const FAQ = ({ onBookClick }: FAQProps) => {
   const [openItem, setOpenItem] = useState<string>("");
 
   return (
-    <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="faq" className="py-24 pb-48 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background gradient glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent pointer-events-none" />
 
