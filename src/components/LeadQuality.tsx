@@ -104,7 +104,7 @@ const LeadQuality = () => {
   return (
     <section ref={containerRef} id="quality" className="relative bg-background h-[300vh] md:h-[400vh]">
       <div className="sticky top-0 h-screen w-full flex flex-col overflow-hidden">
-        <div className="container max-w-7xl mx-auto px-6 relative z-10 pt-8 md:pt-12 flex flex-col h-full">
+        <div className="container max-w-7xl mx-auto px-6 relative z-10 pt-24 md:pt-28 flex flex-col h-full">
           {/* Section Header */}
           <div className="max-w-4xl mb-6 md:mb-8">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">
