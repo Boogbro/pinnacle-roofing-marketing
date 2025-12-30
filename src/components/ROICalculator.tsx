@@ -1,186 +1,189 @@
 import { useState, useEffect } from "react";
 import { Slider } from "@/components/ui/slider";
+import { Card } from "@/components/ui/card";
+import { Info, TrendingUp, Target, DollarSign, Calculator } from "lucide-react";
 
-const CPA = 47; // Cost Per Appointment: $940 / 20 = $47
+const CPA = 47; // Cost Per Appointment
 
 const ROICalculator = () => {
-  // 1. Updated state variables
   const [appointmentsPerMonth, setAppointmentsPerMonth] = useState(20);
   const [closingRate, setClosingRate] = useState(35);
-  const [avgJobValue, setAvgJobValue] = useState(10000); // Set initial value to $10,000 based on screenshots
+  const [avgJobValue, setAvgJobValue] = useState(10000);
 
   const [displayedRevenue, setDisplayedRevenue] = useState(0);
-  const [displayedROI, setDisplayedROI] = useState(0);
+  const [displayedProfit, setDisplayedProfit] = useState(0);
 
-  // 2. Calculate results using new logic
   const closedDeals = (appointmentsPerMonth * closingRate) / 100;
   const totalRevenue = closedDeals * avgJobValue;
-
-  // New Calculation: System Investment = Appointments * $47 (CPA)
   const systemInvestment = appointmentsPerMonth * CPA;
   const profit = totalRevenue - systemInvestment;
-  const roiPercentage = Math.floor((profit / systemInvestment) * 100);
+  const roiMultiplier = (totalRevenue / systemInvestment).toFixed(1);
 
-  // Animate numbers counting up
   useEffect(() => {
-    // Round to nearest integer for display consistency with screenshots
     const targetRevenue = Math.round(totalRevenue);
-    const targetROI = roiPercentage;
+    const targetProfit = Math.round(profit);
 
-    const revenueStep = targetRevenue / 50;
-    const roiStep = targetROI / 50;
-    let currentRevenue = 0;
-    let currentROI = 0;
+    // Smooth number animation
+    let start = 0;
+    const duration = 1000;
+    const frameDuration = 1000 / 60;
+    const totalFrames = Math.round(duration / frameDuration);
 
-    const interval = setInterval(() => {
-      currentRevenue += revenueStep;
-      currentROI += roiStep;
+    let frame = 0;
+    const timer = setInterval(() => {
+      frame++;
+      const progress = frame / totalFrames;
+      setDisplayedRevenue(Math.floor(targetRevenue * progress));
+      setDisplayedProfit(Math.floor(targetProfit * progress));
 
-      if (currentRevenue >= targetRevenue) {
-        currentRevenue = targetRevenue;
-        currentROI = targetROI;
-        clearInterval(interval);
-      }
+      if (frame === totalFrames) clearInterval(timer);
+    }, frameDuration);
 
-      setDisplayedRevenue(Math.floor(currentRevenue));
-      setDisplayedROI(Math.floor(currentROI));
-    }, 20);
+    return () => clearInterval(timer);
+  }, [totalRevenue, profit]);
 
-    // Only re-run if the calculated targets change
-    return () => clearInterval(interval);
-  }, [appointmentsPerMonth, closingRate, avgJobValue, totalRevenue, roiPercentage]);
-
-  // Helper for formatting large job value string
-  const formatJobValue = (value: number) => {
-    return value >= 50000 ? "$50,000+" : `$${value.toLocaleString()}`;
-  };
-
-  // Helper for formatting large investment value string
-  const formatInvestment = (value: number) => {
-    return `$${value.toLocaleString()}`;
-  };
-
-  // Custom Power Curve Scaling
-  // Constraints: 0% = 500, 50% = 10,000, 100% = 50,000
-  // Exponent calculated via: Math.log((10000 - 500) / (50000 - 500)) / Math.log(0.5) ≈ 2.38
-  const minJobValue = 500;
-  const maxJobValue = 50000;
-  const curveExponent = 2.38;
-
-  const toSliderValue = (value: number) => {
-    // Inverse of the power function
-    // returns 0 to 100
-    return Math.pow((value - minJobValue) / (maxJobValue - minJobValue), 1 / curveExponent) * 100;
-  };
-
-  const fromSliderValue = (value: number) => {
-    // Power function: Min + (Range) * (percent)^exponent
-    const val = minJobValue + (maxJobValue - minJobValue) * Math.pow(value / 100, curveExponent);
-    // Round to nearest 100 for cleaner numbers
-    return Math.round(val / 100) * 100;
-  };
+  const formatCurrency = (val: number) =>
+    new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(val);
 
   return (
-    <section id="roi-calculator" className="py-24 px-6 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px]"></div>
+    <section id="roi-calculator" className="py-24 px-4 md:px-6 relative overflow-hidden bg-background">
+      {/* Dynamic Background Elements */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -z-10 animate-float" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-warm-accent/5 rounded-full blur-[100px] -z-10" />
 
-      <div className="container relative z-10 max-w-5xl mx-auto">
-        {/* Section Header */}
+      <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-6xl font-bold gradient-text">See Your Potential ROI</h2>
-          <p className="text-xl text-muted-foreground">Adjust the sliders to calculate your projected returns</p>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-2">
+            <Calculator className="w-4 h-4" />
+            ROI Engine 2025
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
+            Predict Your <span className="gradient-text">Growth</span>
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Adjust the metrics below to see how our infrastructure transforms your roofing business revenue.
+          </p>
         </div>
 
-        {/* Calculator Card */}
-        <div className="glass rounded-3xl p-8 md:p-12 space-y-12">
-          {/* Inputs */}
-          <div className="space-y-8">
-            {/* Average Job Value */}
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <label className="text-lg font-semibold">Average Job Value</label>
-                <span className="text-2xl font-bold text-primary">{formatJobValue(avgJobValue)}</span>
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          {/* Controls Column */}
+          <div className="lg:col-span-5 space-y-6">
+            <Card className="p-6 md:p-8 glass border-white/10 space-y-10">
+              {/* Average Job Value */}
+              <div className="space-y-6">
+                <div className="flex justify-between items-end">
+                  <div className="space-y-1">
+                    <label className="text-sm font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                      Avg Job Value <Info className="w-3 h-3" />
+                    </label>
+                    <div className="text-3xl font-bold text-foreground">{formatCurrency(avgJobValue)}</div>
+                  </div>
+                </div>
+                <Slider
+                  value={[avgJobValue]}
+                  onValueChange={(v) => setAvgJobValue(v[0])}
+                  min={5000}
+                  max={50000}
+                  step={500}
+                  className="py-4"
+                />
               </div>
-              <Slider
-                value={[toSliderValue(avgJobValue)]}
-                onValueChange={(value) => setAvgJobValue(fromSliderValue(value[0]))}
-                min={0}
-                max={100}
-                step={1}
-                className="cursor-pointer"
-              />
-            </div>
 
-            {/* Closing Rate */}
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <label className="text-lg font-semibold">Current Close Rate (%)</label>
-                <span className="text-2xl font-bold text-primary">{closingRate}%</span>
+              {/* Closing Rate */}
+              <div className="space-y-6">
+                <div className="flex justify-between items-end">
+                  <div className="space-y-1">
+                    <label className="text-sm font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                      Closing Rate <Target className="w-4 h-4 text-primary" />
+                    </label>
+                    <div className="text-3xl font-bold text-foreground">{closingRate}%</div>
+                  </div>
+                </div>
+                <Slider
+                  value={[closingRate]}
+                  onValueChange={(v) => setClosingRate(v[0])}
+                  min={10}
+                  max={80}
+                  step={1}
+                  className="py-4"
+                />
               </div>
-              <Slider
-                value={[closingRate]}
-                onValueChange={(value) => setClosingRate(value[0])}
-                min={10}
-                max={90} // Changed max from 80 to 90 based on screenshot range
-                step={5}
-                className="cursor-pointer"
-              />
-            </div>
 
-            {/* Qualified Appointments/Month */}
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <label className="text-lg font-semibold">Qualified Appointments/Month</label>
-                <span className="text-2xl font-bold text-primary">{appointmentsPerMonth}</span>
+              {/* Monthly Appointments */}
+              <div className="space-y-6">
+                <div className="flex justify-between items-end">
+                  <div className="space-y-1">
+                    <label className="text-sm font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                      Monthly Appts <TrendingUp className="w-4 h-4 text-primary" />
+                    </label>
+                    <div className="text-3xl font-bold text-foreground">{appointmentsPerMonth}</div>
+                  </div>
+                </div>
+                <Slider
+                  value={[appointmentsPerMonth]}
+                  onValueChange={(v) => setAppointmentsPerMonth(v[0])}
+                  min={5}
+                  max={100}
+                  step={1}
+                  className="py-4"
+                />
               </div>
-              <Slider
-                value={[appointmentsPerMonth]}
-                onValueChange={(value) => setAppointmentsPerMonth(value[0])}
-                min={5} // Changed min from 5000/1000 to 5 appointments
-                max={50} // Changed max from 50000/1000 to 50 appointments
-                step={1}
-                className="cursor-pointer"
-              />
-            </div>
+            </Card>
           </div>
 
-          {/* Divider */}
-          <div className="border-t border-border"></div>
+          {/* Results Column (Bento Grid) */}
+          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Main Profit Card */}
+            <Card className="md:col-span-2 p-8 bg-primary text-primary-foreground relative overflow-hidden group border-none">
+              <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:scale-110 transition-transform">
+                <DollarSign className="w-24 h-24" />
+              </div>
+              <p className="text-sm font-bold uppercase tracking-[0.2em] opacity-80">Estimated Net Monthly Profit</p>
+              <h3 className="text-5xl md:text-7xl font-black mt-2 mb-4 tabular-nums">
+                {formatCurrency(displayedProfit)}
+              </h3>
+              <div className="flex items-center gap-4 text-sm font-medium">
+                <span className="bg-white/20 px-3 py-1 rounded-full">{roiMultiplier}x Return on Ad Spend</span>
+                <span className="opacity-70">Calculated after system fees</span>
+              </div>
+            </Card>
 
-          {/* Results - Changed layout to 4 rows for consistency with the screenshots' data structure */}
-          <div className="space-y-4">
-            {/* Row 1: Monthly Qualified Appointments */}
-            <div className="flex justify-between items-center py-2 border-b border-border/50">
-              <div className="text-lg text-muted-foreground">Monthly Qualified Appointments</div>
-              <div className="text-lg font-bold text-primary">{appointmentsPerMonth}</div>
-            </div>
+            {/* Secondary Stat Cards */}
+            <Card className="p-6 glass border-white/5 flex flex-col justify-between">
+              <p className="text-muted-foreground text-sm font-medium uppercase">Annual Revenue Pace</p>
+              <div className="mt-4">
+                <div className="text-2xl font-bold">{formatCurrency(totalRevenue * 12)}</div>
+                <div className="w-full bg-white/5 h-1 mt-3 rounded-full overflow-hidden">
+                  <div className="bg-primary h-full transition-all duration-500" style={{ width: "70%" }} />
+                </div>
+              </div>
+            </Card>
 
-            {/* Row 2: Expected Closed Jobs */}
-            <div className="flex justify-between items-center py-2 border-b border-border/50">
-              <div className="text-lg text-muted-foreground">Expected Closed Jobs</div>
-              <div className="text-lg font-bold text-primary">{closedDeals.toFixed(1)}</div>
-            </div>
+            <Card className="p-6 glass border-white/5 flex flex-col justify-between">
+              <p className="text-muted-foreground text-sm font-medium uppercase">Closed Jobs / Mo</p>
+              <div className="mt-4 flex items-baseline gap-2">
+                <div className="text-3xl font-bold text-primary">{closedDeals.toFixed(1)}</div>
+                <div className="text-xs text-muted-foreground italic">Target: {Math.ceil(closedDeals)}</div>
+              </div>
+            </Card>
 
-            {/* Row 3: Monthly Revenue */}
-            <div className="flex justify-between items-center py-2 border-b border-border/50">
-              <div className="text-lg text-muted-foreground">Monthly Revenue</div>
-              <div className="text-lg font-bold text-primary">${totalRevenue.toLocaleString()}</div>
-            </div>
-
-            {/* Row 4: System Investment */}
-            <div className="flex justify-between items-center py-2 border-b border-border/50">
-              <div className="text-lg text-muted-foreground">System Investment</div>
-              <div className="text-lg font-bold text-primary">{formatInvestment(systemInvestment)}</div>
-            </div>
-
-            {/* Final Row: Net Monthly Profit (Highlighted) */}
-            <div className="flex justify-between items-center pt-4">
-              <div className="text-2xl font-bold uppercase tracking-wider">Net Monthly Profit</div>
-              <div className="text-2xl font-bold gradient-text animate-count-up">${profit.toLocaleString()}</div>
-            </div>
+            <Card className="p-6 glass border-white/5 md:col-span-2 flex items-center justify-between">
+              <div>
+                <p className="text-muted-foreground text-sm font-medium uppercase">System Investment</p>
+                <div className="text-xl font-semibold mt-1">{formatCurrency(systemInvestment)}</div>
+              </div>
+              <div className="text-right">
+                <p className="text-muted-foreground text-[10px] uppercase">Fixed CPA Model</p>
+                <div className="text-primary font-bold">$47.00 / Lead</div>
+              </div>
+            </Card>
           </div>
         </div>
+
+        {/* Disclaimer / Mobile Hint */}
+        <p className="mt-12 text-center text-xs text-muted-foreground/60 max-w-md mx-auto italic">
+          *Calculations are based on historical client data. Results vary by market territory and team performance.
+        </p>
       </div>
     </section>
   );
