@@ -144,28 +144,28 @@ const SystemProcess = () => {
             </filter>
           </defs>
           
-          {/* Wide, shallow crumpled paper edges */}
+          {/* Wide crumpled paper edges with more height */}
           <path
             filter="url(#crumpleTexture)"
-            d="M0,145 Q180,135 360,142 T720,138 T1080,145 T1440,140 L1440,192 L0,192 Z"
+            d="M0,130 Q180,115 360,128 T720,118 T1080,130 T1440,122 L1440,192 L0,192 Z"
             fill="hsl(var(--background-light))"
             fillOpacity="0.5"
           />
           <path
             filter="url(#crumpleTexture2)"
-            d="M0,155 Q240,148 480,158 T960,150 T1440,156 L1440,192 L0,192 Z"
+            d="M0,145 Q240,132 480,148 T960,135 T1440,146 L1440,192 L0,192 Z"
             fill="hsl(var(--background-light))"
             fillOpacity="0.7"
           />
           <path
             filter="url(#crumpleTexture3)"
-            d="M0,165 Q300,160 600,168 T1200,162 T1440,166 L1440,192 L0,192 Z"
+            d="M0,158 Q300,148 600,162 T1200,152 T1440,160 L1440,192 L0,192 Z"
             fill="hsl(var(--background-light))"
             fillOpacity="0.85"
           />
           <path
             filter="url(#crumpleTexture)"
-            d="M0,175 Q360,172 720,178 T1440,174 L1440,192 L0,192 Z"
+            d="M0,172 Q360,165 720,175 T1440,168 L1440,192 L0,192 Z"
             fill="hsl(var(--background-light))"
           />
           
