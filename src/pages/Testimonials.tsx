@@ -14,7 +14,7 @@ const testimonials = [
   {
     id: 1,
     type: "video",
-    url: "https://example.com/your-video-1.mp4",
+    url: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/69533c73a61a7edd29c280d1.mp4",
     title: "2+ Roof Replacement Appointments Daily",
     author: "Matt Farmer, Far More Roofing and Construction",
     result: "Hiring New Salesman",
@@ -22,7 +22,7 @@ const testimonials = [
   {
     id: 2,
     type: "video",
-    url: "https://example.com/your-video-2.mp4",
+    url: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/69533b5073a5e06b3aabed7b.mp4",
     title: "3 Jobs Closed in Week 1",
     author: "Gary, Fortress Roofing",
     result: "3 Jobs Closed",
@@ -30,7 +30,7 @@ const testimonials = [
   {
     id: 3,
     type: "video",
-    url: "https://example.com/your-video-3.mp4",
+    url: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/69533d9eee1047fec242d519.mp4",
     title: "21 Roofs Closed in 60 Days",
     author: "Kolbie Schilson, Eminent Roofing Solutions",
     result: "21 Roofs Closed",
