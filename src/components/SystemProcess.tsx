@@ -42,19 +42,23 @@ const steps = [
 
 const SystemProcess = () => {
   return (
-    <section id="system-process" className="py-24 px-6 relative overflow-hidden bg-background">
-      {/* Ambient Background Glows */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[128px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[128px] pointer-events-none" />
+    <section id="system-process" className="py-24 px-6 relative overflow-hidden" style={{ background: 'hsl(var(--background-light))' }}>
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 opacity-50 pointer-events-none" 
+        style={{ 
+          backgroundImage: 'radial-gradient(circle at 1px 1px, hsl(var(--foreground-light) / 0.05) 1px, transparent 0)',
+          backgroundSize: '40px 40px'
+        }} 
+      />
 
       <div className="container relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-8 md:mb-12 max-w-3xl">
-          <h2 className="text-4xl md:text-7xl font-bold tracking-tight mb-6">
+          <h2 className="text-4xl md:text-7xl font-bold tracking-tight mb-6" style={{ color: 'hsl(var(--foreground-light))' }}>
             How It Works{" "}
             <span className="gradient-text">In 60 Seconds</span>
           </h2>
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-xl">
+          <p className="text-xl leading-relaxed max-w-xl" style={{ color: 'hsl(var(--muted-foreground-light))' }}>
             A completely done-for-you system designed to fill your calendar with high-value appointments.
           </p>
         </div>
@@ -68,7 +72,7 @@ const SystemProcess = () => {
               <div
                 key={index}
                 className={cn(
-                  "group relative overflow-hidden rounded-3xl border border-white/10 bg-card/30 backdrop-blur-sm transition-all duration-500 hover:border-white/20 hover:bg-card/40 hover:shadow-2xl hover:shadow-primary/5",
+                  "group relative overflow-hidden rounded-3xl border border-black/10 bg-white/80 backdrop-blur-sm transition-all duration-500 hover:border-black/20 hover:bg-white hover:shadow-2xl hover:shadow-black/10",
                   step.className,
                 )}
               >
@@ -81,27 +85,25 @@ const SystemProcess = () => {
                 />
 
                 {/* Background Image */}
-                <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-700 mix-blend-overlay">
+                <div className="absolute inset-0 z-0 opacity-10 group-hover:opacity-20 transition-opacity duration-700">
                   <img src={step.image} alt={step.title} className="w-full h-full object-cover" loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-transparent" />
                 </div>
 
                 <div className="relative h-full flex flex-col justify-between p-8 md:p-10 min-h-[280px] z-10">
                   {/* Top Section: Icon & Number */}
                   <div className="flex justify-between items-start mb-8">
-                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 backdrop-blur-md">
-                      <Icon className="w-6 h-6 text-foreground/80" />
+                    <div className="w-12 h-12 rounded-2xl bg-black/5 border border-black/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                      <Icon className="w-6 h-6" style={{ color: 'hsl(var(--foreground-light))' }} />
                     </div>
-                    <span className="text-sm font-mono text-muted-foreground/50 tracking-widest">{step.number}</span>
+                    <span className="text-sm font-mono tracking-widest" style={{ color: 'hsl(var(--muted-foreground-light) / 0.5)' }}>{step.number}</span>
                   </div>
 
                   {/* Content Section */}
                   <div className="relative z-10">
-                    <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
+                    <h3 className="text-2xl md:text-3xl font-semibold mb-3 group-hover:text-primary transition-colors duration-300" style={{ color: 'hsl(var(--foreground-light))' }}>
                       {step.title}
                     </h3>
-                    <p className="text-muted-foreground text-base md:text-lg leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
+                    <p className="text-base md:text-lg leading-relaxed" style={{ color: 'hsl(var(--muted-foreground-light))' }}>
                       {step.description}
                     </p>
                   </div>
