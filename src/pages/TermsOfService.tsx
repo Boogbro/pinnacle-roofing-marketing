@@ -23,15 +23,15 @@ const TermsOfService = () => {
           <h1 className="text-4xl font-bold mb-8 gradient-text">Terms and Conditions</h1>
           
           <p className="mb-8">
-            Welcome to SP Digital Growth. These Terms and Conditions ("Terms") govern your use of our website, services, and any related materials provided by SP Digital Growth ("Company," "we," "our," or "us"). These Terms create a legally binding agreement between you ("Client," "you," or "your") and SP Digital Growth. Please read these Terms carefully before using our services.
+            Welcome to Pinnacle Roofing Marketing. These Terms and Conditions ("Terms") govern your use of our website, services, and any related materials provided by Pinnacle Roofing Marketing ("Company," "we," "our," or "us"). These Terms create a legally binding agreement between you ("Client," "you," or "your") and Pinnacle Roofing Marketing. Please read these Terms carefully before using our services.
           </p>
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">Acceptance of Terms</h2>
           
           <h3 className="text-xl font-semibold mt-6 mb-3">Agreement to Terms</h3>
           <ul className="list-disc pl-6 space-y-2">
-            <li>By accessing or using SP Digital Growth services, you agree to be bound by these Terms and Conditions</li>
-            <li>These terms constitute a legally binding agreement between you and SP Digital Growth</li>
+            <li>By accessing or using Pinnacle Roofing Marketing services, you agree to be bound by these Terms and Conditions</li>
+            <li>These terms constitute a legally binding agreement between you and Pinnacle Roofing Marketing</li>
             <li>If you do not agree to these terms, you must not use our services or website</li>
             <li>We reserve the right to modify these terms at any time with notice to users</li>
           </ul>
@@ -159,7 +159,7 @@ const TermsOfService = () => {
 
           <div className="mt-12 p-6 rounded-lg bg-muted/30 border border-border">
             <h2 className="text-2xl font-bold mb-4">Important Legal Notice</h2>
-            <p className="mb-4">These terms constitute the entire agreement between you and SP Digital Growth. No modifications are valid unless made in writing and signed by both parties. If any provision is found unenforceable, the remaining terms remain in effect.</p>
+            <p className="mb-4">These terms constitute the entire agreement between you and Pinnacle Roofing Marketing. No modifications are valid unless made in writing and signed by both parties. If any provision is found unenforceable, the remaining terms remain in effect.</p>
             <p className="mb-4">For questions about these Terms and Conditions, please contact us:</p>
             <div className="space-y-2">
               <p className="font-semibold text-primary">legal@mail.spdigitalgrowth.com</p>
