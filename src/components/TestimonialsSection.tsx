@@ -250,7 +250,12 @@ interface FullscreenVideoModalProps {
 
 const FullscreenVideoModal = ({ isOpen, onClose, testimonial }: FullscreenVideoModalProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
   const [isMuted, setIsMuted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isHoveringProgress, setIsHoveringProgress] = useState(false);
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -259,12 +264,105 @@ const FullscreenVideoModal = ({ isOpen, onClose, testimonial }: FullscreenVideoM
     }
   };
 
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current && !isDragging) {
+      const { currentTime, duration } = videoRef.current;
+      if (duration > 0) {
+        setProgress((currentTime / duration) * 100);
+      }
+    }
+  };
+
+  const seekToPosition = (clientX: number) => {
+    if (progressRef.current && videoRef.current) {
+      const rect = progressRef.current.getBoundingClientRect();
+      const clickX = Math.max(0, Math.min(clientX - rect.left, rect.width));
+      const percentage = clickX / rect.width;
+      const newTime = percentage * videoRef.current.duration;
+      videoRef.current.currentTime = newTime;
+      setProgress(percentage * 100);
+    }
+  };
+
+  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    seekToPosition(e.clientX);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setIsDragging(true);
+    seekToPosition(e.clientX);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setIsDragging(true);
+    if (e.touches[0]) {
+      seekToPosition(e.touches[0].clientX);
+    }
+  };
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDragging) {
+        seekToPosition(e.clientX);
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isDragging && e.touches[0]) {
+        seekToPosition(e.touches[0].clientX);
+      }
+    };
+
+    const handleEnd = () => {
+      setIsDragging(false);
+    };
+
+    if (isDragging) {
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleEnd);
+      window.addEventListener("touchmove", handleTouchMove);
+      window.addEventListener("touchend", handleEnd);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleEnd);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleEnd);
+    };
+  }, [isDragging]);
+
+  // Reset state when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setIsPlaying(true);
+      setProgress(0);
+      setIsMuted(false);
+    }
+  }, [isOpen]);
+
   if (!testimonial) return null;
+
+  const isProgressExpanded = isHoveringProgress || isDragging;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-5xl w-full h-[90vh] p-0 bg-black border-none overflow-hidden">
-        <div className="relative w-full h-full flex items-center justify-center">
+        <div className="relative w-full h-full flex items-center justify-center group">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
@@ -272,9 +370,17 @@ const FullscreenVideoModal = ({ isOpen, onClose, testimonial }: FullscreenVideoM
             <X className="w-5 h-5" />
           </button>
 
+          {/* Play/Pause button */}
+          <button
+            onClick={togglePlay}
+            className="absolute top-4 left-4 z-20 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+          >
+            {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
+          </button>
+
           <button
             onClick={toggleMute}
-            className="absolute bottom-4 right-4 z-20 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            className="absolute bottom-20 right-4 z-20 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
           >
             {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
           </button>
@@ -282,14 +388,51 @@ const FullscreenVideoModal = ({ isOpen, onClose, testimonial }: FullscreenVideoM
           <video
             ref={videoRef}
             src={testimonial.url}
-            className="max-w-full max-h-full object-contain"
+            className="max-w-full max-h-full object-contain cursor-pointer"
             playsInline
             loop
             autoPlay
             muted={isMuted}
+            onClick={togglePlay}
+            onTimeUpdate={handleTimeUpdate}
           />
 
-          <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+          {/* Progress bar */}
+          <div
+            ref={progressRef}
+            className={`absolute bottom-[88px] left-4 right-4 z-20 cursor-pointer transition-all duration-200 rounded-full overflow-hidden ${
+              isProgressExpanded ? "h-3 md:h-2" : "h-1.5"
+            }`}
+            style={{ touchAction: "none" }}
+            onClick={handleProgressClick}
+            onMouseDown={handleMouseDown}
+            onTouchStart={handleTouchStart}
+            onMouseEnter={() => setIsHoveringProgress(true)}
+            onMouseLeave={() => !isDragging && setIsHoveringProgress(false)}
+          >
+            {/* Background track */}
+            <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
+            
+            {/* Filled progress */}
+            <div
+              className="absolute left-0 top-0 bottom-0 bg-primary transition-all duration-75 ease-linear"
+              style={{ width: `${progress}%` }}
+            >
+              {/* Playhead dot */}
+              <div 
+                className={`absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_10px_rgba(37,99,235,0.9)] transition-all duration-200 ${
+                  isProgressExpanded 
+                    ? "w-4 h-4 -right-2 md:w-3 md:h-3 md:-right-1.5" 
+                    : "w-2.5 h-2.5 -right-1"
+                }`} 
+              />
+            </div>
+
+            {/* Larger touch target area for mobile */}
+            <div className="absolute -top-4 left-0 right-0 h-8 md:hidden" />
+          </div>
+
+          <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent pointer-events-none">
             <p className="text-lg md:text-xl font-medium text-white mb-2">
               "{testimonial.quote}"
             </p>
