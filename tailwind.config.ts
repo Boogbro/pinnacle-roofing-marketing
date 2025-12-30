@@ -104,6 +104,10 @@ export default {
           "0%": { transform: "translateY(10px)", opacity: "0" },
           "100%": { transform: "translateY(0)", opacity: "1" },
         },
+        "wave": {
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(-25px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

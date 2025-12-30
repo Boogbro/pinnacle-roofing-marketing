@@ -42,7 +42,7 @@ const steps = [
 
 const SystemProcess = () => {
   return (
-    <section id="system-process" className="py-24 px-6 relative overflow-hidden bg-background">
+    <section id="system-process" className="py-24 pb-48 px-6 relative overflow-hidden bg-background">
       {/* Ambient Background Glows */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[128px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[128px] pointer-events-none" />
@@ -117,6 +117,36 @@ const SystemProcess = () => {
             );
           })}
         </div>
+      </div>
+      {/* Dynamic transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none">
+        {/* Gradient fade */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-[hsl(var(--background-light))]" />
+        {/* Animated wave effect */}
+        <svg
+          className="absolute bottom-0 left-0 w-full h-24"
+          viewBox="0 0 1440 96"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          <path
+            className="animate-[wave_8s_ease-in-out_infinite]"
+            d="M0,64 C360,96 720,32 1080,64 C1260,80 1380,72 1440,64 L1440,96 L0,96 Z"
+            fill="hsl(var(--background-light))"
+            fillOpacity="0.6"
+          />
+          <path
+            className="animate-[wave_6s_ease-in-out_infinite_reverse]"
+            d="M0,80 C240,48 480,96 720,64 C960,32 1200,80 1440,48 L1440,96 L0,96 Z"
+            fill="hsl(var(--background-light))"
+            fillOpacity="0.8"
+          />
+          <path
+            d="M0,88 C180,72 360,96 540,80 C720,64 900,88 1080,72 C1260,56 1380,80 1440,72 L1440,96 L0,96 Z"
+            fill="hsl(var(--background-light))"
+          />
+        </svg>
       </div>
     </section>
   );
