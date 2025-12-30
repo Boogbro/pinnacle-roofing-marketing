@@ -119,14 +119,11 @@ const SystemProcess = () => {
         </div>
       </div>
       {/* Paper mesh transition to next section */}
-      <div className="absolute -bottom-1 left-0 right-0 h-32 sm:h-40 md:h-48 lg:h-56 pointer-events-none overflow-hidden">
-        {/* Solid base to prevent any gaps */}
-        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-[hsl(var(--background-light))]" />
-        
+      <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none overflow-hidden">
         {/* Paper mesh SVG pattern */}
         <svg
           className="absolute bottom-0 left-0 w-full h-full"
-          viewBox="0 0 1440 224"
+          viewBox="0 0 1440 192"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
@@ -150,32 +147,32 @@ const SystemProcess = () => {
           {/* Wide crumpled paper edges with more height */}
           <path
             filter="url(#crumpleTexture)"
-            d="M0,100 Q180,80 360,98 T720,85 T1080,100 T1440,90 L1440,224 L0,224 Z"
+            d="M0,130 Q180,115 360,128 T720,118 T1080,130 T1440,122 L1440,192 L0,192 Z"
             fill="hsl(var(--background-light))"
             fillOpacity="0.5"
           />
           <path
             filter="url(#crumpleTexture2)"
-            d="M0,120 Q240,105 480,122 T960,108 T1440,118 L1440,224 L0,224 Z"
+            d="M0,145 Q240,132 480,148 T960,135 T1440,146 L1440,192 L0,192 Z"
             fill="hsl(var(--background-light))"
             fillOpacity="0.7"
           />
           <path
             filter="url(#crumpleTexture3)"
-            d="M0,140 Q300,128 600,142 T1200,130 T1440,138 L1440,224 L0,224 Z"
+            d="M0,158 Q300,148 600,162 T1200,152 T1440,160 L1440,192 L0,192 Z"
             fill="hsl(var(--background-light))"
             fillOpacity="0.85"
           />
           <path
             filter="url(#crumpleTexture)"
-            d="M0,160 Q360,150 720,162 T1440,155 L1440,224 L0,224 Z"
+            d="M0,172 Q360,165 720,175 T1440,168 L1440,192 L0,192 Z"
             fill="hsl(var(--background-light))"
           />
           
           {/* Crumpled fiber strands */}
           <g opacity="0.12">
-            <path filter="url(#crumpleTexture2)" d="M0,90 Q480,110 960,88 T1440,100" stroke="hsl(var(--background-light))" strokeWidth="3" fill="none" />
-            <path filter="url(#crumpleTexture3)" d="M0,110 Q360,100 720,115 T1440,105" stroke="hsl(var(--background-light))" strokeWidth="2" fill="none" />
+            <path filter="url(#crumpleTexture2)" d="M0,140 Q480,155 960,138 T1440,148" stroke="hsl(var(--background-light))" strokeWidth="3" fill="none" />
+            <path filter="url(#crumpleTexture3)" d="M0,152 Q360,145 720,155 T1440,142" stroke="hsl(var(--background-light))" strokeWidth="2" fill="none" />
           </g>
         </svg>
       </div>
