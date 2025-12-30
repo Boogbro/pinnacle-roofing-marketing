@@ -329,9 +329,9 @@ const LeadQuality = () => {
                   ? "bg-primary/10 border-primary/20 group-hover:bg-primary/20" 
                   : "bg-[hsl(var(--foreground-light)/0.08)] border-[hsl(var(--foreground-light)/0.15)] group-hover:bg-[hsl(var(--foreground-light)/0.12)]"
               )}>
-                <fact.icon className={cn(
+              <fact.icon className={cn(
                   "w-6 h-6 transition-colors duration-700",
-                  backgroundState === 'dark' ? "text-primary" : "text-[hsl(var(--foreground-light))]"
+                  backgroundState === 'dark' ? "text-primary" : "text-primary"
                 )} />
               </div>
               <h4 className={cn(
