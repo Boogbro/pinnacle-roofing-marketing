@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { LottieRefCurrentProps } from "lottie-react";
 import Lottie from "lottie-react";
-import { Shield, Target, Zap } from "lucide-react";
+import { Shield, Target, Zap, TrendingUp, Users, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Import your uploaded Lottie JSON files
@@ -41,6 +41,24 @@ const features = [
     icon: Shield,
     lottie: mapPinAnim,
     gradient: "from-emerald-500/10 to-transparent",
+  },
+];
+
+const facts = [
+  {
+    icon: TrendingUp,
+    title: "87% Close Rate",
+    description: "Pre-qualified leads that convert",
+  },
+  {
+    icon: Users,
+    title: "Exclusive Territory",
+    description: "No competition, no shared leads",
+  },
+  {
+    icon: Clock,
+    title: "30-60 Day Windows",
+    description: "Ready-to-start project timelines",
   },
 ];
 
@@ -131,7 +149,6 @@ const LeadQuality = () => {
 
   const handleTabClick = (index: number) => {
     setActiveIndex(index);
-    // Scroll to the appropriate position in the section
     if (containerRef.current) {
       const { top, height } = containerRef.current.getBoundingClientRect();
       const sectionTop = window.scrollY + top;
@@ -142,87 +159,144 @@ const LeadQuality = () => {
   };
 
   return (
-    <section ref={containerRef} id="quality" className="relative bg-background h-[300vh] md:h-[400vh]">
-      <div className="sticky top-0 h-screen w-full flex flex-col overflow-hidden">
-        <div className="container max-w-7xl mx-auto px-6 relative z-10 pt-24 md:pt-28 flex flex-col h-full pb-8">
-          {/* Section Header - Outside Card */}
-          <div className="max-w-4xl mb-6 md:mb-8">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              Beyond the Lead: <br />
-              <span className="gradient-text">Truly Prequalified Appointments</span>
-            </h2>
-          </div>
+    <section id="quality" className="relative bg-background">
+      {/* Header Section with Gradient Line Start */}
+      <div className="container max-w-7xl mx-auto px-6 pt-24 md:pt-32 pb-8 relative">
+        {/* Vertical Gradient Line - Starting Point */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-0 w-px h-24 md:h-32 bg-gradient-to-b from-transparent via-primary/50 to-primary" />
+        
+        <div className="text-center max-w-4xl mx-auto relative">
+          {/* Glow effect behind header */}
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent blur-3xl -z-10" />
+          
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+            Beyond the Lead: <br />
+            <span className="gradient-text">Truly Prequalified Appointments</span>
+          </h2>
+        </div>
+      </div>
 
-          {/* Main Card Container */}
-          <div className="flex-1 min-h-0 border border-white/10 rounded-3xl bg-card/30 backdrop-blur-md p-6 md:p-8 lg:p-10 flex flex-col">
-            {/* Tab Navigation */}
-            <div className="flex items-center gap-1 mb-6 md:mb-8">
-              {features.map((feature, index) => {
-                const isActive = index === activeIndex;
-                return (
-                  <button
-                    key={index}
-                    onClick={() => handleTabClick(index)}
-                    className={cn(
-                      "flex items-center gap-2 px-3 py-2 rounded-lg border-2 transition-all duration-300 font-semibold text-sm",
-                      isActive 
-                        ? "bg-primary border-primary text-primary-foreground" 
-                        : "border-primary/50 text-primary hover:border-primary hover:bg-primary/10"
-                    )}
-                  >
-                    <span>{feature.shortLabel}</span>
-                    {isActive && (
-                      <span className="hidden sm:inline">{feature.fullLabel}</span>
-                    )}
-                  </button>
-                );
-              })}
+      {/* Gradient Line Connecting to Card */}
+      <div className="relative h-16 md:h-24">
+        <div className="absolute left-1/2 -translate-x-1/2 top-0 w-px h-full bg-primary/60" />
+      </div>
+
+      {/* Sticky Scroll Container */}
+      <div ref={containerRef} className="relative h-[300vh] md:h-[400vh]">
+        <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-4 md:px-6">
+          {/* Full-Screen Card Container */}
+          <div className="relative w-full max-w-[1400px] h-[calc(100vh-80px)] border border-primary/20 rounded-3xl bg-card/50 backdrop-blur-md overflow-hidden">
+            {/* Corner Gradient Line Decoration */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-8 bg-primary/60" />
+            <div className="absolute -top-px left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+            
+            {/* Inner glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+            
+            <div className="relative z-10 h-full p-6 md:p-10 lg:p-12 flex flex-col">
+              {/* Tab Navigation */}
+              <div className="flex items-center gap-1 mb-6 md:mb-8">
+                {features.map((feature, index) => {
+                  const isActive = index === activeIndex;
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => handleTabClick(index)}
+                      className={cn(
+                        "flex items-center gap-2 px-3 py-2 rounded-lg border-2 transition-all duration-300 font-semibold text-sm",
+                        isActive 
+                          ? "bg-primary border-primary text-primary-foreground" 
+                          : "border-primary/50 text-primary hover:border-primary hover:bg-primary/10"
+                      )}
+                    >
+                      <span>{feature.shortLabel}</span>
+                      {isActive && (
+                        <span className="hidden sm:inline">{feature.fullLabel}</span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Feature Content */}
+              <div className="relative flex-1 min-h-0">
+                {features.map((feature, index) => {
+                  const isActive = index === activeIndex;
+
+                  return (
+                    <div
+                      key={index}
+                      className={cn(
+                        "absolute inset-0 flex flex-col md:flex-row gap-8 md:gap-12 items-center transition-all duration-700 ease-in-out",
+                        isActive ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95 pointer-events-none"
+                      )}
+                    >
+                      <div className="flex-1 space-y-4 md:space-y-6">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-sm font-medium">
+                          <feature.icon className="w-4 h-4" />
+                          {feature.headline}
+                        </div>
+                        <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">{feature.title}</h3>
+                        <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">{feature.description}</p>
+                      </div>
+
+                      <div className="flex-1 w-full max-w-md lg:max-w-lg aspect-square relative group">
+                        <div className={cn("absolute inset-0 rounded-2xl bg-gradient-to-br opacity-50", feature.gradient)} />
+                        <div className="relative h-full w-full flex items-center justify-center">
+                          {feature.lottieReverse ? (
+                            <LottieForwardReverse 
+                              forwardData={feature.lottie}
+                              reverseData={feature.lottieReverse}
+                              isActive={isActive}
+                            />
+                          ) : (
+                            <LottiePlayer 
+                              animationData={feature.lottie}
+                              isActive={isActive}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Feature Content */}
-            <div className="relative flex-1 min-h-0">
-              {features.map((feature, index) => {
-                const isActive = index === activeIndex;
-
-                return (
-                  <div
-                    key={index}
-                    className={cn(
-                      "absolute inset-0 flex flex-col md:flex-row gap-8 md:gap-12 items-center transition-all duration-700 ease-in-out",
-                      isActive ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95 pointer-events-none"
-                    )}
-                  >
-                    <div className="flex-1 space-y-4 md:space-y-6">
-                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-sm font-medium">
-                        <feature.icon className="w-4 h-4" />
-                        {feature.headline}
-                      </div>
-                      <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">{feature.title}</h3>
-                      <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">{feature.description}</p>
-                    </div>
-
-                    <div className="flex-1 w-full max-w-md lg:max-w-lg aspect-square relative group">
-                      <div className={cn("absolute inset-0 rounded-2xl bg-gradient-to-br opacity-50", feature.gradient)} />
-                      <div className="relative h-full w-full flex items-center justify-center">
-                        {feature.lottieReverse ? (
-                          <LottieForwardReverse 
-                            forwardData={feature.lottie}
-                            reverseData={feature.lottieReverse}
-                            isActive={isActive}
-                          />
-                        ) : (
-                          <LottiePlayer 
-                            animationData={feature.lottie}
-                            isActive={isActive}
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            {/* Bottom gradient line decoration */}
+            <div className="absolute -bottom-px left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
           </div>
+        </div>
+      </div>
+
+      {/* Gradient Line Connecting to Facts */}
+      <div className="relative h-24 md:h-32">
+        <div className="absolute left-1/2 -translate-x-1/2 top-0 w-px h-full bg-primary/60" />
+      </div>
+
+      {/* Three Facts Section */}
+      <div className="container max-w-7xl mx-auto px-6 pb-24 md:pb-32 relative">
+        {/* Horizontal gradient line above facts */}
+        <div className="relative mb-12 md:mb-16">
+          <div className="absolute left-1/2 -translate-x-1/2 -top-8 w-px h-8 bg-primary/60" />
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent" />
+        </div>
+
+        {/* Facts Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 relative">
+          {/* Vertical dividers between facts */}
+          <div className="hidden md:block absolute left-1/3 top-0 bottom-0 w-px bg-border/50" />
+          <div className="hidden md:block absolute left-2/3 top-0 bottom-0 w-px bg-border/50" />
+          
+          {facts.map((fact, index) => (
+            <div key={index} className="text-center group">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                <fact.icon className="w-6 h-6 text-primary" />
+              </div>
+              <h4 className="text-lg md:text-xl font-bold mb-2">{fact.title}</h4>
+              <p className="text-sm md:text-base text-muted-foreground">{fact.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
