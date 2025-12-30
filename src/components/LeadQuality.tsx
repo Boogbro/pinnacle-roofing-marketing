@@ -124,24 +124,35 @@ const LottieForwardReverse = ({
 
 const LeadQuality = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isLightBackground, setIsLightBackground] = useState(true);
+  const [backgroundState, setBackgroundState] = useState<'light' | 'dark' | 'transitioning-to-light'>('light');
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current) return;
+      if (!containerRef.current || !sectionRef.current) return;
       const { top, height } = containerRef.current.getBoundingClientRect();
       const scrollProgress = -top / (height - window.innerHeight);
       const index = Math.min(Math.max(Math.floor(scrollProgress * features.length), 0), features.length - 1);
       setActiveIndex(index);
 
-      // Check if WhoWeServe CTA button is out of view
+      // Check if WhoWeServe CTA button is out of view (for light->dark transition at top)
       const whoWeServeCTA = document.querySelector('[data-testid="button-who-we-serve-cta"]');
-      if (whoWeServeCTA) {
-        const ctaRect = whoWeServeCTA.getBoundingClientRect();
-        // When the CTA button is fully above the viewport, switch to dark background
-        setIsLightBackground(ctaRect.bottom > 0);
+      const ctaInView = whoWeServeCTA ? whoWeServeCTA.getBoundingClientRect().bottom > 0 : false;
+
+      // Check if approaching GrowthInfrastructure section (for dark->light transition at bottom)
+      const growthSection = document.getElementById('infrastructure');
+      const sectionRect = sectionRef.current.getBoundingClientRect();
+      
+      // Transition to light when the bottom of LeadQuality section is within 200px of viewport bottom
+      const approachingGrowth = growthSection && sectionRect.bottom < window.innerHeight + 200;
+
+      if (ctaInView) {
+        setBackgroundState('light');
+      } else if (approachingGrowth) {
+        setBackgroundState('transitioning-to-light');
+      } else {
+        setBackgroundState('dark');
       }
     };
 
@@ -167,7 +178,7 @@ const LeadQuality = () => {
       ref={sectionRef}
       className={cn(
         "relative transition-colors duration-700",
-        isLightBackground ? "bg-[hsl(var(--background-light))]" : "bg-background"
+        backgroundState === 'dark' ? "bg-background" : "bg-[hsl(var(--background-light))]"
       )}
     >
       {/* Header Section */}
@@ -181,7 +192,7 @@ const LeadQuality = () => {
 
           <h2 className={cn(
             "text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 transition-colors duration-700",
-            isLightBackground ? "text-[hsl(var(--foreground-light))]" : "text-foreground"
+            backgroundState === 'dark' ? "text-foreground" : "text-[hsl(var(--foreground-light))]"
           )}>
             Beyond the Lead: <br />
             <span className="gradient-text">Truly Prequalified Appointments</span>

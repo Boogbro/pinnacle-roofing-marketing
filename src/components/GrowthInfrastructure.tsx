@@ -75,21 +75,25 @@ const GrowthInfrastructure = () => {
   }, [visibleCards]);
 
   return (
-    <section ref={sectionRef} id="infrastructure" className="py-24 px-6 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]"></div>
+    <section 
+      ref={sectionRef} 
+      id="infrastructure" 
+      className="py-24 px-6 relative overflow-hidden bg-[hsl(var(--background-light))]"
+    >
+      {/* Background glow - adjusted for light theme */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[hsl(var(--foreground-light)/0.05)] rounded-full blur-[120px]"></div>
 
       <div className="container max-w-4xl mx-auto relative">
         {/* Section Header */}
         <div className="text-center mb-24 space-y-4">
-          <h2 className="text-4xl md:text-6xl font-bold">Complete Growth Infrastructure</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-6xl font-bold text-[hsl(var(--foreground-light))]">Complete Growth Infrastructure</h2>
+          <p className="text-xl text-[hsl(var(--foreground-light)/0.7)] max-w-2xl mx-auto">
             Everything you need to dominate your market, fully managed
           </p>
         </div>
 
         {/* Vertical Timeline Line */}
-        <div className="absolute left-8 md:left-1/2 top-[280px] bottom-20 w-[2px] bg-border/30 -translate-x-1/2">
+        <div className="absolute left-8 md:left-1/2 top-[280px] bottom-20 w-[2px] bg-[hsl(var(--foreground-light)/0.15)] -translate-x-1/2">
           {/* Animated progress line */}
           <div
             className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary via-primary to-primary/50 transition-all duration-1000 ease-out"
@@ -119,14 +123,14 @@ const GrowthInfrastructure = () => {
                     isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
                   }`}
                 >
-                  <div className="w-16 h-16 rounded-full bg-background border-2 border-primary flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.5)]">
+                  <div className="w-16 h-16 rounded-full bg-[hsl(var(--background-light))] border-2 border-primary flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.5)]">
                     <Icon className="w-7 h-7 text-primary" />
                   </div>
                 </div>
 
                 {/* Card */}
                 <div
-                  className={`glass rounded-2xl p-8 space-y-4 group hover:border-primary/50 transition-all duration-700 hover:scale-[1.02] ml-24 md:ml-0 ${
+                  className={`rounded-2xl p-8 space-y-4 group transition-all duration-700 hover:scale-[1.02] ml-24 md:ml-0 border border-[hsl(var(--foreground-light)/0.1)] bg-[hsl(var(--foreground-light)/0.03)] hover:border-primary/50 hover:bg-[hsl(var(--foreground-light)/0.06)] ${
                     isEven ? "md:mr-[calc(50%+4rem)]" : "md:ml-[calc(50%+4rem)]"
                   } ${
                     isVisible
@@ -137,8 +141,8 @@ const GrowthInfrastructure = () => {
                 >
                   {/* Content */}
                   <div className="space-y-3">
-                    <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">{feature.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                    <h3 className="text-2xl font-bold text-[hsl(var(--foreground-light))] group-hover:text-primary transition-colors">{feature.title}</h3>
+                    <p className="text-[hsl(var(--foreground-light)/0.7)] leading-relaxed">{feature.description}</p>
                   </div>
 
                   {/* Hover glow effect */}
