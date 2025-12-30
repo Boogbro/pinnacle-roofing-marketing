@@ -104,8 +104,8 @@ const LeadQuality = () => {
   return (
     <section ref={containerRef} id="quality" className="relative bg-background h-[300vh] md:h-[400vh]">
       <div className="sticky top-0 h-screen w-full flex flex-col overflow-hidden">
-        <div className="container max-w-7xl mx-auto px-6 relative z-10 pt-24 md:pt-28 flex flex-col h-full">
-          {/* Section Header */}
+        <div className="container max-w-7xl mx-auto px-6 relative z-10 pt-24 md:pt-28 flex flex-col h-full pb-8">
+          {/* Section Header - Outside Card */}
           <div className="max-w-4xl mb-6 md:mb-8">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">
               Beyond the Lead: <br />
@@ -113,64 +113,67 @@ const LeadQuality = () => {
             </h2>
           </div>
 
-          {/* Tab Navigation */}
-          <div className="flex items-center gap-1 mb-8 md:mb-10">
-            {features.map((feature, index) => {
-              const isActive = index === activeIndex;
-              return (
-                <button
-                  key={index}
-                  onClick={() => handleTabClick(index)}
-                  className={cn(
-                    "flex items-center gap-2 px-3 py-2 rounded-lg border-2 transition-all duration-300 font-semibold text-sm",
-                    isActive 
-                      ? "bg-primary border-primary text-primary-foreground" 
-                      : "border-primary/50 text-primary hover:border-primary hover:bg-primary/10"
-                  )}
-                >
-                  <span>{feature.shortLabel}</span>
-                  {isActive && (
-                    <span className="hidden sm:inline">{feature.fullLabel}</span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
+          {/* Main Card Container */}
+          <div className="flex-1 min-h-0 border border-white/10 rounded-3xl bg-card/30 backdrop-blur-md p-6 md:p-8 lg:p-10 flex flex-col">
+            {/* Tab Navigation */}
+            <div className="flex items-center gap-1 mb-6 md:mb-8">
+              {features.map((feature, index) => {
+                const isActive = index === activeIndex;
+                return (
+                  <button
+                    key={index}
+                    onClick={() => handleTabClick(index)}
+                    className={cn(
+                      "flex items-center gap-2 px-3 py-2 rounded-lg border-2 transition-all duration-300 font-semibold text-sm",
+                      isActive 
+                        ? "bg-primary border-primary text-primary-foreground" 
+                        : "border-primary/50 text-primary hover:border-primary hover:bg-primary/10"
+                    )}
+                  >
+                    <span>{feature.shortLabel}</span>
+                    {isActive && (
+                      <span className="hidden sm:inline">{feature.fullLabel}</span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
 
-          {/* Feature Content */}
-          <div className="relative flex-1 min-h-0">
-            {features.map((feature, index) => {
-              const isActive = index === activeIndex;
+            {/* Feature Content */}
+            <div className="relative flex-1 min-h-0">
+              {features.map((feature, index) => {
+                const isActive = index === activeIndex;
 
-              return (
-                <div
-                  key={index}
-                  className={cn(
-                    "absolute inset-0 flex flex-col md:flex-row gap-8 md:gap-12 items-center transition-all duration-700 ease-in-out",
-                    isActive ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95 pointer-events-none"
-                  )}
-                >
-                  <div className="flex-1 space-y-4 md:space-y-6">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-sm font-medium">
-                      <feature.icon className="w-4 h-4" />
-                      {feature.headline}
+                return (
+                  <div
+                    key={index}
+                    className={cn(
+                      "absolute inset-0 flex flex-col md:flex-row gap-8 md:gap-12 items-center transition-all duration-700 ease-in-out",
+                      isActive ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95 pointer-events-none"
+                    )}
+                  >
+                    <div className="flex-1 space-y-4 md:space-y-6">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-sm font-medium">
+                        <feature.icon className="w-4 h-4" />
+                        {feature.headline}
+                      </div>
+                      <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">{feature.title}</h3>
+                      <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">{feature.description}</p>
                     </div>
-                    <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">{feature.title}</h3>
-                    <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">{feature.description}</p>
-                  </div>
 
-                  <div className="flex-1 w-full max-w-md lg:max-w-lg aspect-square relative group">
-                    <div className={cn("absolute inset-0 rounded-3xl bg-gradient-to-br opacity-50", feature.gradient)} />
-                    <div className="relative h-full w-full flex items-center justify-center border border-white/10 rounded-3xl bg-card/30 backdrop-blur-md overflow-hidden">
-                      <LottiePlayer 
-                        animationData={feature.lottie}
-                        isActive={isActive}
-                      />
+                    <div className="flex-1 w-full max-w-md lg:max-w-lg aspect-square relative group">
+                      <div className={cn("absolute inset-0 rounded-2xl bg-gradient-to-br opacity-50", feature.gradient)} />
+                      <div className="relative h-full w-full flex items-center justify-center">
+                        <LottiePlayer 
+                          animationData={feature.lottie}
+                          isActive={isActive}
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
