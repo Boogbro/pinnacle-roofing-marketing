@@ -55,9 +55,77 @@ const FAQ = ({ onBookClick }: FAQProps) => {
   const [openItem, setOpenItem] = useState<string>("");
 
   return (
-    <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="faq" className="py-24 pb-48 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background gradient glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent pointer-events-none" />
+
+      {/* Crumpled paper mesh transition at bottom */}
+      <div className="absolute -bottom-4 left-0 right-0 h-64 pointer-events-none z-20">
+        <svg
+          className="absolute bottom-0 left-0 w-full h-full"
+          viewBox="0 0 1440 256"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <filter id="crumpleFaqBot1" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.012 0.06" numOctaves="6" result="noise" seed="31" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <filter id="crumpleFaqBot2" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.018 0.09" numOctaves="5" result="noise" seed="37" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <filter id="crumpleFaqBot3" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.022 0.11" numOctaves="5" result="noise" seed="43" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <filter id="crumpleFaqBot4" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.028 0.14" numOctaves="4" result="noise" seed="47" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+          </defs>
+          
+          {/* Layered crumpled paper waves transitioning to light background */}
+          <path
+            filter="url(#crumpleFaqBot1)"
+            d="M0,100 Q120,85 240,98 T480,88 T720,100 T960,90 T1200,102 T1440,92 L1440,256 L0,256 Z"
+            fill="hsl(var(--background-light))"
+            fillOpacity="0.35"
+          />
+          <path
+            filter="url(#crumpleFaqBot2)"
+            d="M0,125 Q180,110 360,122 T720,112 T1080,125 T1440,118 L1440,256 L0,256 Z"
+            fill="hsl(var(--background-light))"
+            fillOpacity="0.55"
+          />
+          <path
+            filter="url(#crumpleFaqBot3)"
+            d="M0,150 Q240,138 480,152 T960,140 T1440,150 L1440,256 L0,256 Z"
+            fill="hsl(var(--background-light))"
+            fillOpacity="0.75"
+          />
+          <path
+            filter="url(#crumpleFaqBot4)"
+            d="M0,175 Q300,165 600,178 T1200,168 T1440,176 L1440,256 L0,256 Z"
+            fill="hsl(var(--background-light))"
+            fillOpacity="0.9"
+          />
+          <path
+            filter="url(#crumpleFaqBot1)"
+            d="M0,200 Q360,192 720,202 T1440,195 L1440,256 L0,256 Z"
+            fill="hsl(var(--background-light))"
+          />
+          
+          {/* Subtle crease lines for paper texture */}
+          <g opacity="0.15">
+            <path filter="url(#crumpleFaqBot2)" d="M0,115 Q480,128 960,112 T1440,122" stroke="hsl(var(--background-light))" strokeWidth="2.5" fill="none" />
+            <path filter="url(#crumpleFaqBot3)" d="M0,140 Q360,132 720,142 T1440,135" stroke="hsl(var(--background-light))" strokeWidth="2" fill="none" />
+            <path filter="url(#crumpleFaqBot4)" d="M0,165 Q540,175 1080,162 T1440,170" stroke="hsl(var(--background-light))" strokeWidth="1.5" fill="none" />
+          </g>
+        </svg>
+      </div>
 
       <div className="max-w-4xl mx-auto relative">
         {/* Header */}
