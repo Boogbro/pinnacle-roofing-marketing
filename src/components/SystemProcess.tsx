@@ -119,11 +119,14 @@ const SystemProcess = () => {
         </div>
       </div>
       {/* Paper mesh transition to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none overflow-hidden">
+      <div className="absolute bottom-0 left-0 right-0 h-64 pointer-events-none overflow-hidden">
+        {/* Base gradient blend */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-[hsl(var(--background-light))]" />
+        
         {/* Paper mesh SVG pattern */}
         <svg
           className="absolute bottom-0 left-0 w-full h-full"
-          viewBox="0 0 1440 128"
+          viewBox="0 0 1440 256"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
@@ -132,59 +135,56 @@ const SystemProcess = () => {
           <defs>
             <filter id="paperTexture" x="-20%" y="-20%" width="140%" height="140%">
               <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise" seed="1" />
-              <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G" />
             </filter>
+            <linearGradient id="meshGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="hsl(var(--background))" stopOpacity="0" />
+              <stop offset="40%" stopColor="hsl(var(--background))" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="hsl(var(--background-light))" stopOpacity="1" />
+            </linearGradient>
           </defs>
           
           {/* Organic torn paper edge shapes */}
           <path
             filter="url(#paperTexture)"
-            d="M0,60 Q80,30 160,55 T320,35 T480,60 T640,30 T800,55 T960,35 T1120,55 T1280,40 T1440,60 L1440,128 L0,128 Z"
+            d="M0,180 Q80,140 160,170 T320,150 T480,180 T640,140 T800,175 T960,145 T1120,170 T1280,155 T1440,180 L1440,256 L0,256 Z"
             fill="hsl(var(--background-light))"
             fillOpacity="0.4"
           />
           <path
             filter="url(#paperTexture)"
-            d="M0,75 Q100,50 200,70 T400,55 T600,75 T800,50 T1000,70 T1200,55 T1440,75 L1440,128 L0,128 Z"
+            d="M0,200 Q100,170 200,195 T400,175 T600,200 T800,165 T1000,190 T1200,170 T1440,200 L1440,256 L0,256 Z"
             fill="hsl(var(--background-light))"
             fillOpacity="0.6"
           />
           <path
             filter="url(#paperTexture)"
-            d="M0,90 Q60,75 120,88 T240,72 T360,90 T480,75 T600,88 T720,70 T840,88 T960,75 T1080,90 T1200,72 T1320,88 T1440,78 L1440,128 L0,128 Z"
+            d="M0,215 Q60,195 120,210 T240,190 T360,215 T480,195 T600,210 T720,185 T840,210 T960,195 T1080,215 T1200,190 T1320,210 T1440,195 L1440,256 L0,256 Z"
             fill="hsl(var(--background-light))"
             fillOpacity="0.8"
           />
           <path
-            d="M0,105 Q40,95 80,102 T160,96 T240,105 T320,94 T400,105 T480,94 T560,102 T640,96 T720,105 T800,94 T880,102 T960,96 T1040,105 T1120,94 T1200,102 T1280,96 T1360,105 T1440,98 L1440,128 L0,128 Z"
+            d="M0,235 Q40,220 80,232 T160,225 T240,235 T320,222 T400,235 T480,220 T560,232 T640,225 T720,235 T800,220 T880,232 T960,225 T1040,235 T1120,222 T1200,232 T1280,225 T1360,235 T1440,228 L1440,256 L0,256 Z"
             fill="hsl(var(--background-light))"
           />
           
-          {/* Animated mesh fiber strands */}
-          <g opacity="0.25">
-            <path 
-              className="animate-[meshFiber1_4s_ease-in-out_infinite]"
-              d="M0,40 Q360,70 720,35 T1440,55" 
-              stroke="hsl(var(--background-light))" 
-              strokeWidth="2" 
-              fill="none" 
-            />
-            <path 
-              className="animate-[meshFiber2_5s_ease-in-out_infinite]"
-              d="M0,55 Q480,25 960,65 T1440,40" 
-              stroke="hsl(var(--background-light))" 
-              strokeWidth="1.5" 
-              fill="none" 
-            />
-            <path 
-              className="animate-[meshFiber3_6s_ease-in-out_infinite]"
-              d="M0,70 Q240,90 480,50 T960,80 T1440,55" 
-              stroke="hsl(var(--background-light))" 
-              strokeWidth="1" 
-              fill="none" 
-            />
+          {/* Mesh fiber strands for paper texture effect */}
+          <g opacity="0.15">
+            <path d="M0,160 Q360,200 720,140 T1440,180" stroke="hsl(var(--background-light))" strokeWidth="2" fill="none" />
+            <path d="M0,175 Q480,130 960,190 T1440,150" stroke="hsl(var(--background-light))" strokeWidth="1.5" fill="none" />
+            <path d="M0,190 Q240,220 480,170 T960,200 T1440,165" stroke="hsl(var(--background-light))" strokeWidth="1" fill="none" />
           </g>
         </svg>
+        
+        {/* Additional mesh overlay for depth */}
+        <div 
+          className="absolute bottom-0 left-0 right-0 h-32"
+          style={{
+            background: `linear-gradient(to bottom, transparent, hsl(var(--background-light)))`,
+            maskImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            WebkitMaskImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+          }}
+        />
       </div>
     </section>
   );

@@ -108,18 +108,6 @@ export default {
           "0%, 100%": { transform: "translateX(0)" },
           "50%": { transform: "translateX(-25px)" },
         },
-        "meshFiber1": {
-          "0%, 100%": { transform: "translateY(0)", opacity: "0.25" },
-          "50%": { transform: "translateY(-3px)", opacity: "0.4" },
-        },
-        "meshFiber2": {
-          "0%, 100%": { transform: "translateY(0)", opacity: "0.2" },
-          "50%": { transform: "translateY(4px)", opacity: "0.35" },
-        },
-        "meshFiber3": {
-          "0%, 100%": { transform: "translateY(0)", opacity: "0.15" },
-          "50%": { transform: "translateY(-2px)", opacity: "0.3" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
