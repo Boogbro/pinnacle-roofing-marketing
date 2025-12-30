@@ -84,19 +84,22 @@ const VideoCard = ({ testimonial, index, onFullscreenRequest }: VideoCardProps) 
           preload="metadata"
         />
 
-        <div
-          className={`absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300 ${
-            isPlaying ? "opacity-0 group-hover:opacity-100" : "opacity-100"
-          }`}
-        >
-          <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-110">
-            {isPlaying ? (
-              <Pause className="w-5 h-5 text-foreground" />
-            ) : (
-              <Play className="w-5 h-5 text-foreground ml-0.5" />
-            )}
+        {/* Play/Pause overlay - hidden when playing for Matt & Gary (non-fullscreen videos) */}
+        {(!isPlaying || testimonial.fullscreenPreferred) && (
+          <div
+            className={`absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300 ${
+              isPlaying ? "opacity-0 group-hover:opacity-100" : "opacity-100"
+            }`}
+          >
+            <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-110">
+              {isPlaying ? (
+                <Pause className="w-5 h-5 text-foreground" />
+              ) : (
+                <Play className="w-5 h-5 text-foreground ml-0.5" />
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         <button
           onClick={toggleMute}
