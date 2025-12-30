@@ -136,12 +136,12 @@ const LeadQuality = () => {
       const index = Math.min(Math.max(Math.floor(scrollProgress * features.length), 0), features.length - 1);
       setActiveIndex(index);
 
-      // Check if WhoWeServe section is out of view
-      const whoWeServeSection = document.getElementById('who-we-serve');
-      if (whoWeServeSection) {
-        const whoWeServeRect = whoWeServeSection.getBoundingClientRect();
-        // When the WhoWeServe section is fully above the viewport, switch to dark background
-        setIsLightBackground(whoWeServeRect.bottom > 0);
+      // Check if WhoWeServe CTA button is out of view
+      const whoWeServeCTA = document.querySelector('[data-testid="button-who-we-serve-cta"]');
+      if (whoWeServeCTA) {
+        const ctaRect = whoWeServeCTA.getBoundingClientRect();
+        // When the CTA button is fully above the viewport, switch to dark background
+        setIsLightBackground(ctaRect.bottom > 0);
       }
     };
 
