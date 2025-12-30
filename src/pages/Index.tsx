@@ -1,6 +1,7 @@
 import { useState, lazy, Suspense } from "react";
 import Hero from "@/components/Hero";
 import LogoCarousel from "@/components/LogoCarousel";
+import LeadQuality from "@/components/LeadQuality";
 import WhoWeServe from "@/components/WhoWeServe";
 import SystemProcess from "@/components/SystemProcess";
 import ROICalculator from "@/components/ROICalculator";

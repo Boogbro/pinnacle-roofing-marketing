@@ -38,6 +38,7 @@ const features = [
 const LeadQuality = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const lottieRefs = useRef<Record<number, any>>({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,6 +52,18 @@ const LeadQuality = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    Object.entries(lottieRefs.current).forEach(([idx, ref]) => {
+      if (ref?.current) {
+        if (parseInt(idx) === activeIndex) {
+          ref.current.play?.();
+        } else {
+          ref.current.pause?.();
+        }
+      }
+    });
+  }, [activeIndex]);
 
   return (
     <section ref={containerRef} id="quality" className="relative bg-background h-[300vh] md:h-[400vh]">
@@ -89,13 +102,16 @@ const LeadQuality = () => {
                     <div className="relative h-full w-full flex items-center justify-center border border-white/10 rounded-3xl bg-card/30 backdrop-blur-md overflow-hidden">
                       {/* Render the Lottie Animation */}
                       <Lottie 
+                        lottieRef={(instance: any) => {
+                          if (!lottieRefs.current[index]) {
+                            lottieRefs.current[index] = { current: instance };
+                          } else {
+                            lottieRefs.current[index].current = instance;
+                          }
+                        }}
                         animationData={feature.lottie} 
                         loop={true} 
                         className="w-full h-full p-8 md:p-12"
-                        // Only play if the card is active to save resources
-                        lottieRef={(instance) => {
-                          if (instance) isActive ? instance.play() : instance.pause();
-                        }}
                       />
                     </div>
                   </div>
