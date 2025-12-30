@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import Lottie from "lottie-react"; // Import the player
-import { CheckCircle2, Shield, Target, Zap } from "lucide-react";
+import { useEffect, useRef, useState, RefObject } from "react";
+import type { LottieRefCurrentProps } from "lottie-react";
+import Lottie from "lottie-react";
+import { Shield, Target, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Import your uploaded Lottie JSON files
@@ -14,15 +15,15 @@ const features = [
     headline: "High-End Scope of Work",
     description: "We don't just find homeowners; we find investors. We specialize in securing appointments for full kitchen remodels, primary bath gut renovations, and full roof replacements.",
     icon: Target,
-    lottie: houseAnim, // Assign the animation
+    lottie: houseAnim,
     gradient: "from-blue-500/10 to-transparent",
   },
   {
     title: "Rigorously Vetted Readiness",
     headline: "The 5-Point Screening Process",
-    description: "Every lead is screened for design, permit, or financing readiness. We ask the homeowner the tough questions you’d ask yourself, ensuring start windows are within 30 to 60 days.",
+    description: "Every lead is screened for design, permit, or financing readiness. We ask the homeowner the tough questions you'd ask yourself, ensuring start windows are within 30 to 60 days.",
     icon: Zap,
-    lottie: screeningAnim, // Assign the animation
+    lottie: screeningAnim,
     gradient: "from-amber-500/10 to-transparent",
   },
   {
@@ -30,15 +31,44 @@ const features = [
     headline: "One Partner. One Area.",
     description: "No shared leads. No bidding wars. We operate with strict qualifying criteria and only allow one partner per service area. When we deliver a lead, it is yours and yours alone.",
     icon: Shield,
-    lottie: mapPinAnim, // Assign the animation
+    lottie: mapPinAnim,
     gradient: "from-emerald-500/10 to-transparent",
   },
 ];
 
+// Helper component to properly use lottieRef
+const LottiePlayer = ({ 
+  animationData, 
+  isActive 
+}: { 
+  animationData: unknown; 
+  isActive: boolean;
+}) => {
+  const lottieRef = useRef<LottieRefCurrentProps>(null);
+
+  useEffect(() => {
+    if (lottieRef.current) {
+      if (isActive) {
+        lottieRef.current.play();
+      } else {
+        lottieRef.current.pause();
+      }
+    }
+  }, [isActive]);
+
+  return (
+    <Lottie 
+      lottieRef={lottieRef}
+      animationData={animationData} 
+      loop={true} 
+      className="w-full h-full p-8 md:p-12"
+    />
+  );
+};
+
 const LeadQuality = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const lottieRefs = useRef<Record<number, any>>({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,18 +82,6 @@ const LeadQuality = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    Object.entries(lottieRefs.current).forEach(([idx, ref]) => {
-      if (ref?.current) {
-        if (parseInt(idx) === activeIndex) {
-          ref.current.play?.();
-        } else {
-          ref.current.pause?.();
-        }
-      }
-    });
-  }, [activeIndex]);
 
   return (
     <section ref={containerRef} id="quality" className="relative bg-background h-[300vh] md:h-[400vh]">
@@ -100,18 +118,9 @@ const LeadQuality = () => {
                   <div className="flex-1 w-full max-w-lg aspect-square relative group">
                     <div className={cn("absolute inset-0 rounded-3xl bg-gradient-to-br opacity-50", feature.gradient)} />
                     <div className="relative h-full w-full flex items-center justify-center border border-white/10 rounded-3xl bg-card/30 backdrop-blur-md overflow-hidden">
-                      {/* Render the Lottie Animation */}
-                      <Lottie 
-                        lottieRef={(instance: any) => {
-                          if (!lottieRefs.current[index]) {
-                            lottieRefs.current[index] = { current: instance };
-                          } else {
-                            lottieRefs.current[index].current = instance;
-                          }
-                        }}
-                        animationData={feature.lottie} 
-                        loop={true} 
-                        className="w-full h-full p-8 md:p-12"
+                      <LottiePlayer 
+                        animationData={feature.lottie}
+                        isActive={isActive}
                       />
                     </div>
                   </div>
