@@ -1,42 +1,127 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BookingModal from "@/components/BookingModal";
-import VideoPlayer from "@/components/VideoPlayer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Star, Quote } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { ArrowRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 
-// ----------------------------------------------------------------------
-// 1. PASTE YOUR VIDEO LINKS BELOW (replace the placeholder URLs)
-// ----------------------------------------------------------------------
 const testimonials = [
   {
     id: 1,
-    type: "video",
     url: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/69533c73a61a7edd29c280d1.mp4",
-    title: "2+ Roof Replacement Appointments Daily",
-    author: "Matt Farmer, Far More Roofing and Construction",
-    result: "Hiring New Salesman",
+    quote: "Getting 2+ roof replacement appointments daily with this system.",
+    author: "Matt Farmer",
+    role: "Far More Roofing and Construction",
   },
   {
     id: 2,
-    type: "video",
     url: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/69533b5073a5e06b3aabed7b.mp4",
-    title: "3 Jobs Closed in Week 1",
-    author: "Gary, Fortress Roofing",
-    result: "3 Jobs Closed",
+    quote: "We closed 3 jobs in our very first week. The quality is unreal.",
+    author: "Gary",
+    role: "Fortress Roofing",
   },
   {
     id: 3,
-    type: "video",
     url: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/69533d9eee1047fec242d519.mp4",
-    title: "21 Roofs Closed in 60 Days",
-    author: "Kolbie Schilson, Eminent Roofing Solutions",
-    result: "21 Roofs Closed",
+    quote: "21 roofs closed in just 60 days. Complete game changer.",
+    author: "Kolbie Schilson",
+    role: "Eminent Roofing Solutions",
   },
-  // Add more testimonials here...
 ];
+
+interface VideoCardProps {
+  testimonial: typeof testimonials[0];
+  index: number;
+}
+
+const VideoCard = ({ testimonial, index }: VideoCardProps) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  return (
+    <div
+      className="relative group cursor-pointer animate-fade-in-up"
+      style={{ animationDelay: `${index * 150}ms` }}
+      onClick={togglePlay}
+    >
+      {/* Video Container - Portrait aspect ratio */}
+      <div className="relative aspect-[9/16] rounded-2xl overflow-hidden bg-muted/20 shadow-xl">
+        <video
+          ref={videoRef}
+          src={testimonial.url}
+          className="w-full h-full object-cover"
+          muted={isMuted}
+          playsInline
+          loop
+          preload="metadata"
+        />
+
+        {/* Play/Pause Overlay */}
+        <div
+          className={`absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300 ${
+            isPlaying ? "opacity-0 group-hover:opacity-100" : "opacity-100"
+          }`}
+        >
+          <div className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-110">
+            {isPlaying ? (
+              <Pause className="w-6 h-6 text-foreground ml-0" />
+            ) : (
+              <Play className="w-6 h-6 text-foreground ml-1" />
+            )}
+          </div>
+        </div>
+
+        {/* Mute Button */}
+        <button
+          onClick={toggleMute}
+          className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/70 z-10"
+        >
+          {isMuted ? (
+            <VolumeX className="w-5 h-5" />
+          ) : (
+            <Volume2 className="w-5 h-5" />
+          )}
+        </button>
+
+        {/* Gradient Overlay for Text */}
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
+
+        {/* Quote and Author Info */}
+        <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+          <p className="text-base md:text-lg font-medium leading-snug mb-4">
+            "{testimonial.quote}"
+          </p>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-semibold text-white">{testimonial.author}</p>
+              <p className="text-sm text-white/70">{testimonial.role}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Testimonials = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -50,64 +135,20 @@ const Testimonials = () => {
       <Navbar onBookClick={() => setIsBookingOpen(true)} />
 
       <main className="flex-grow pt-32 pb-24 px-6">
-        <div className="container max-w-7xl mx-auto space-y-20">
-          {/* Header */}
-          <div className="text-center space-y-6 max-w-3xl mx-auto animate-fade-in">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-4">
-              <Star className="w-4 h-4 text-primary fill-primary" />
-              <span className="text-primary text-xs font-bold tracking-widest uppercase">Proven Results</span>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight">
-              Real Contractors. <br />
-              <span className="gradient-text">Real Empire Growth.</span>
+        <div className="container max-w-7xl mx-auto space-y-16">
+          {/* Header - Clean and Bold */}
+          <div className="text-left max-w-3xl animate-fade-in">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+              Trusted by elite contractors,
+              <br />
+              <span className="text-muted-foreground">backed by real results</span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              See how elite contractors are using our infrastructure to dominate their local markets and scale their
-              revenue.
-            </p>
           </div>
 
-          {/* Testimonials Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((item, index) => (
-              <div key={item.id} className="animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
-                <Card className="bg-card/50 border-primary/10 overflow-hidden h-full hover:border-primary/30 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]">
-                  <CardContent className="p-0 flex flex-col h-full">
-                    {/* Media Container */}
-                    <div className="relative aspect-video w-full bg-black/20 overflow-hidden">
-                      {item.type === "video" ? (
-                        <VideoPlayer videoUrl={item.url} className="w-full h-full" />
-                      ) : (
-                        <img
-                          src={item.url}
-                          alt={item.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                          loading="lazy"
-                        />
-                      )}
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6 flex flex-col flex-grow space-y-4">
-                      <div className="space-y-2">
-                        <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{item.title}</h3>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <Quote className="w-4 h-4 text-primary/50" />
-                          <span>{item.author}</span>
-                        </div>
-                      </div>
-
-                      {/* Result Badge */}
-                      <div className="mt-auto pt-4 border-t border-border/50 flex items-center justify-between">
-                        <span className="text-sm font-medium text-muted-foreground">Result:</span>
-                        <span className="text-sm font-bold text-green-500 bg-green-500/10 px-2 py-1 rounded">
-                          {item.result}
-                        </span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+          {/* Video Testimonials Grid - 3 Column Portrait Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {testimonials.map((testimonial, index) => (
+              <VideoCard key={testimonial.id} testimonial={testimonial} index={index} />
             ))}
           </div>
 
