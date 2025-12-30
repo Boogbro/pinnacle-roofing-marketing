@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Play, Pause, Volume2, VolumeX, X, Star } from "lucide-react";
 
@@ -40,9 +40,12 @@ interface VideoCardProps {
 
 const VideoCard = ({ testimonial, index, onFullscreenRequest }: VideoCardProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(!testimonial.startWithSound);
   const [progress, setProgress] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isHoveringProgress, setIsHoveringProgress] = useState(false);
 
   const togglePlay = () => {
     if (testimonial.fullscreenPreferred && onFullscreenRequest) {
@@ -69,7 +72,7 @@ const VideoCard = ({ testimonial, index, onFullscreenRequest }: VideoCardProps) 
   };
 
   const handleTimeUpdate = () => {
-    if (videoRef.current) {
+    if (videoRef.current && !isDragging) {
       const { currentTime, duration } = videoRef.current;
       if (duration > 0) {
         setProgress((currentTime / duration) * 100);
@@ -77,15 +80,70 @@ const VideoCard = ({ testimonial, index, onFullscreenRequest }: VideoCardProps) 
     }
   };
 
-  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-    if (videoRef.current) {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
+  const seekToPosition = (clientX: number) => {
+    if (progressRef.current && videoRef.current) {
+      const rect = progressRef.current.getBoundingClientRect();
+      const clickX = Math.max(0, Math.min(clientX - rect.left, rect.width));
       const percentage = clickX / rect.width;
-      videoRef.current.currentTime = percentage * videoRef.current.duration;
+      const newTime = percentage * videoRef.current.duration;
+      videoRef.current.currentTime = newTime;
+      setProgress(percentage * 100);
     }
   };
+
+  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    seekToPosition(e.clientX);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setIsDragging(true);
+    seekToPosition(e.clientX);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setIsDragging(true);
+    if (e.touches[0]) {
+      seekToPosition(e.touches[0].clientX);
+    }
+  };
+
+  // Global mouse/touch move and up handlers for dragging
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDragging) {
+        seekToPosition(e.clientX);
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isDragging && e.touches[0]) {
+        seekToPosition(e.touches[0].clientX);
+      }
+    };
+
+    const handleEnd = () => {
+      setIsDragging(false);
+    };
+
+    if (isDragging) {
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleEnd);
+      window.addEventListener("touchmove", handleTouchMove);
+      window.addEventListener("touchend", handleEnd);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleEnd);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleEnd);
+    };
+  }, [isDragging]);
+
+  const isProgressExpanded = isHoveringProgress || isDragging;
 
   return (
     <div
@@ -107,18 +165,41 @@ const VideoCard = ({ testimonial, index, onFullscreenRequest }: VideoCardProps) 
 
         {/* Progress bar - only visible when playing */}
         <div
-          className={`absolute bottom-0 left-0 right-0 h-1 bg-white/20 z-20 cursor-pointer transition-opacity duration-300 ${
-            isPlaying ? "opacity-100" : "opacity-0"
-          }`}
+          ref={progressRef}
+          className={`absolute bottom-0 left-0 right-0 z-20 cursor-pointer transition-all duration-200 ${
+            isPlaying ? "opacity-100" : "opacity-0 pointer-events-none"
+          } ${isProgressExpanded ? "h-3 md:h-2" : "h-1"}`}
+          style={{ touchAction: "none" }}
           onClick={handleProgressClick}
+          onMouseDown={handleMouseDown}
+          onTouchStart={handleTouchStart}
+          onMouseEnter={() => setIsHoveringProgress(true)}
+          onMouseLeave={() => !isDragging && setIsHoveringProgress(false)}
         >
+          {/* Background track */}
+          <div className={`absolute inset-0 bg-white/20 backdrop-blur-sm transition-all duration-200 ${
+            isProgressExpanded ? "rounded-t-sm" : ""
+          }`} />
+          
+          {/* Filled progress */}
           <div
-            className="h-full bg-primary transition-all duration-100 ease-linear relative"
+            className={`absolute left-0 top-0 bottom-0 bg-primary transition-all duration-75 ease-linear ${
+              isProgressExpanded ? "rounded-t-sm" : ""
+            }`}
             style={{ width: `${progress}%` }}
           >
-            {/* Glow effect on progress head */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(37,99,235,0.8)]" />
+            {/* Playhead dot - larger on hover/drag */}
+            <div 
+              className={`absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_10px_rgba(37,99,235,0.9)] transition-all duration-200 ${
+                isProgressExpanded 
+                  ? "w-4 h-4 -right-2 md:w-3 md:h-3 md:-right-1.5" 
+                  : "w-2 h-2 -right-1"
+              }`} 
+            />
           </div>
+
+          {/* Larger touch target area for mobile */}
+          <div className="absolute -top-4 left-0 right-0 h-8 md:hidden" />
         </div>
 
         {/* Play/Pause overlay - hidden when playing for Matt & Gary (non-fullscreen videos) */}
