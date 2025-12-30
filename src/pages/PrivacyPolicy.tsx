@@ -23,7 +23,7 @@ const PrivacyPolicy = () => {
           <h1 className="text-4xl font-bold mb-8 gradient-text">Privacy Policy</h1>
           
           <p className="mb-8">
-            SP Digital Growth ("we," "our," or "us") is committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy describes how we collect, use, disclose, and safeguard your information when you visit our website, use our services, or engage with our marketing materials. By using our services, you agree to the collection and use of information in accordance with this policy.
+            Pinnacle Roofing Marketing ("we," "our," or "us") is committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy describes how we collect, use, disclose, and safeguard your information when you visit our website, use our services, or engage with our marketing materials. By using our services, you agree to the collection and use of information in accordance with this policy.
           </p>
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">Information We Collect</h2>
@@ -66,7 +66,7 @@ const PrivacyPolicy = () => {
           
           <h3 className="text-xl font-semibold mt-6 mb-3">We Do Not Sell Your Information</h3>
           <ul className="list-disc pl-6 space-y-2">
-            <li>SP Digital Growth does not sell, rent, or trade your personal information to third parties</li>
+            <li>Pinnacle Roofing Marketing does not sell, rent, or trade your personal information to third parties</li>
             <li>We maintain strict confidentiality of all client business information</li>
             <li>Any case studies or testimonials require explicit written consent</li>
           </ul>
