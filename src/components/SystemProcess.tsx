@@ -118,12 +118,12 @@ const SystemProcess = () => {
           })}
         </div>
       </div>
-      {/* Paper mesh transition to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none overflow-hidden">
+      {/* Paper mesh transition to next section - extends below to overlap WhoWeServe */}
+      <div className="absolute -bottom-8 left-0 right-0 h-56 pointer-events-none z-20">
         {/* Paper mesh SVG pattern */}
         <svg
           className="absolute bottom-0 left-0 w-full h-full"
-          viewBox="0 0 1440 192"
+          viewBox="0 0 1440 224"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
@@ -147,25 +147,25 @@ const SystemProcess = () => {
           {/* Wide crumpled paper edges with more height */}
           <path
             filter="url(#crumpleTexture)"
-            d="M0,130 Q180,115 360,128 T720,118 T1080,130 T1440,122 L1440,192 L0,192 Z"
+            d="M0,130 Q180,115 360,128 T720,118 T1080,130 T1440,122 L1440,224 L0,224 Z"
             fill="hsl(var(--background-light))"
             fillOpacity="0.5"
           />
           <path
             filter="url(#crumpleTexture2)"
-            d="M0,145 Q240,132 480,148 T960,135 T1440,146 L1440,192 L0,192 Z"
+            d="M0,145 Q240,132 480,148 T960,135 T1440,146 L1440,224 L0,224 Z"
             fill="hsl(var(--background-light))"
             fillOpacity="0.7"
           />
           <path
             filter="url(#crumpleTexture3)"
-            d="M0,158 Q300,148 600,162 T1200,152 T1440,160 L1440,192 L0,192 Z"
+            d="M0,158 Q300,148 600,162 T1200,152 T1440,160 L1440,224 L0,224 Z"
             fill="hsl(var(--background-light))"
             fillOpacity="0.85"
           />
           <path
             filter="url(#crumpleTexture)"
-            d="M0,172 Q360,165 720,175 T1440,168 L1440,192 L0,192 Z"
+            d="M0,172 Q360,165 720,175 T1440,168 L1440,224 L0,224 Z"
             fill="hsl(var(--background-light))"
           />
           
