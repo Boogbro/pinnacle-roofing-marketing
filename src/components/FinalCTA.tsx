@@ -30,7 +30,7 @@ const FinalCTA = ({ onBookClick }: FinalCTAProps) => {
           <div className="pt-4">
             <Button
               size="lg"
-              className="text-lg px-10 py-7 bg-primary hover:bg-primary/90 text-primary-foreground glow hover:scale-105 transition-all duration-300 group"
+              className="text-base md:text-lg px-6 md:px-10 py-6 md:py-7 bg-primary hover:bg-primary/90 text-primary-foreground glow hover:scale-105 transition-all duration-300 group w-full sm:w-auto"
               onClick={onBookClick}
             >
               Get Your Free Growth Blueprint
