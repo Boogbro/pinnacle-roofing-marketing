@@ -89,7 +89,10 @@ const Navbar = ({ onBookClick }: NavbarProps) => {
           {/* Logo/Title */}
           <a href="/" className="flex items-center space-x-2 group" onClick={handleLogoClick}>
             <h1 className="text-xl md:text-2xl font-black">
-              <span className="gradient-text">Pinnacle Roofing Marketing</span>
+              <span className="gradient-text">
+                <span className="font-black italic">Pinnacle</span>
+                <span className="font-semibold"> Roofing Marketing</span>
+              </span>
             </h1>
           </a>
 
