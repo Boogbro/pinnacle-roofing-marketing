@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Info, TrendingUp, Target, DollarSign, Calculator } from "lucide-react";
 
 // Original Math Constants
-const CPA = 47;
+const CPA = 70;
 const minJobValue = 500;
 const maxJobValue = 50000;
 const curveExponent = 2.38;
@@ -185,7 +185,7 @@ const ROICalculator = () => {
               </div>
               <div className="text-right">
                 <p className="text-muted-foreground text-[10px] uppercase">Model Baseline</p>
-                <div className="text-primary font-bold">$47 per Appointment</div>
+                <div className="text-primary font-bold">$70 per Appointment</div>
               </div>
             </Card>
           </div>
