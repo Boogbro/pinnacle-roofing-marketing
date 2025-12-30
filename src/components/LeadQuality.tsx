@@ -85,27 +85,26 @@ const LottieForwardReverse = ({
   isActive: boolean;
 }) => {
   const [playingForward, setPlayingForward] = useState(true);
-  const lottieRef = useRef<LottieRefCurrentProps>(null);
 
+  // Reset to forward when becoming inactive
   useEffect(() => {
-    if (lottieRef.current) {
-      if (isActive) {
-        lottieRef.current.goToAndPlay(0);
-      } else {
-        lottieRef.current.pause();
-      }
+    if (!isActive) {
+      setPlayingForward(true);
     }
-  }, [isActive, playingForward]);
+  }, [isActive]);
 
   const handleComplete = () => {
-    setPlayingForward(prev => !prev);
+    if (isActive) {
+      setPlayingForward(prev => !prev);
+    }
   };
 
   return (
     <Lottie 
-      lottieRef={lottieRef}
+      key={playingForward ? 'forward' : 'reverse'}
       animationData={playingForward ? forwardData : reverseData} 
       loop={false}
+      autoplay={isActive}
       onComplete={handleComplete}
       className="w-full h-full p-8 md:p-12"
     />
