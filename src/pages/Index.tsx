@@ -27,8 +27,8 @@ const Index = () => {
       <Hero onBookClick={handleBookClick}>
         <LogoCarousel />
       </Hero>
-      <LeadQuality />
       <SystemProcess />
+      <LeadQuality />
       <WhoWeServe onBookClick={handleBookClick} />
       <GrowthInfrastructure />
       <ROICalculator />
