@@ -58,11 +58,6 @@ All colors MUST be HSL.
     --shadow-card: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
 
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    /* Light section background */
-    --background-light: 0 0% 96%;
-    --foreground-light: 222 47% 11%;
-    --muted-foreground-light: 215 20% 40%;
   }
 }
 
@@ -107,44 +102,5 @@ All colors MUST be HSL.
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-  }
-
-  /* Animated gradient border */
-  @property --gradient-angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-  }
-
-  .animated-border-gradient {
-    position: relative;
-    background: hsl(var(--card));
-    border-radius: 1.5rem;
-  }
-
-  .animated-border-gradient::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    border-radius: inherit;
-    background: conic-gradient(
-      from var(--gradient-angle),
-      hsl(35 95% 55%),
-      hsl(45 100% 65%),
-      hsl(35 95% 55%),
-      hsl(25 90% 50%),
-      hsl(35 95% 55%)
-    );
-    z-index: -1;
-    animation: rotate-gradient 4s linear infinite;
-  }
-
-  @keyframes rotate-gradient {
-    from {
-      --gradient-angle: 0deg;
-    }
-    to {
-      --gradient-angle: 360deg;
-    }
   }
 }
