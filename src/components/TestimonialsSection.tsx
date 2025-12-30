@@ -189,7 +189,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section className="py-24 px-6 relative overflow-hidden">
+    <section id="results" className="py-24 px-6 relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background pointer-events-none" />
       
@@ -203,7 +203,7 @@ const TestimonialsSection = () => {
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight">
-            Trusted by Elite Contractors
+            Trusted by <span className="gradient-text">Elite Contractors</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             See how top roofing companies are scaling their revenue with our lead generation system.
