@@ -73,7 +73,7 @@ const VideoCard = ({ testimonial, index, onFullscreenRequest }: VideoCardProps) 
       style={{ animationDelay: `${index * 150}ms` }}
       onClick={togglePlay}
     >
-      <div className="relative aspect-[9/16] rounded-2xl overflow-hidden bg-muted/20 shadow-xl border border-border/20">
+      <div className="relative aspect-[9/14] md:aspect-[9/16] rounded-2xl overflow-hidden bg-muted/20 shadow-xl border border-border/20">
         <video
           ref={videoRef}
           src={testimonial.url}
